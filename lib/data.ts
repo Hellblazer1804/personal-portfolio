@@ -338,7 +338,7 @@ export const experience = [
       challenge:
         "Own the AWS platform at 99.9999% uptime under 24×7 on-call in a regulated PCI environment, reclaim $200K+/month in cloud waste, and automate away the manual developer requests - all simultaneously.",
       solution:
-        "AWS Platform: Terraform-managed infrastructure with Python and Bash automation for rightsizing (oversized instances, idle resources, off-hours autoscaling) cut $200K+/month. 24×7 on-call across Datadog, Dynatrace, and Splunk held <0.01% error-rate SLOs; CI/CD pipelines and quarterly DR exercises kept the platform resilient. DevDash (side project): TypeScript/Node.js approval-gated platform where Lambda handles SQS dumps, vault secret delivery, and PagerDuty paging - eliminating the manual request queue entirely.",
+        "AWS Platform: Terraform-managed infrastructure with Python and Bash automation for rightsizing (oversized instances, idle resources, off-hours autoscaling) cut $200K+/month. 24×7 on-call across Datadog, Dynatrace, and Splunk held <0.01% error-rate SLOs; CI/CD pipelines and quarterly DR exercises kept the platform resilient. Also built DevDash: a TypeScript/Node.js approval-gated platform where Lambda handles SQS dumps, vault secret delivery, and PagerDuty paging - eliminating the manual developer request queue entirely.",
     },
     highlights: [
       "Operated shared AWS platform across 6 PCI-supporting production accounts at 99.9999% uptime: EKS, RDS/Aurora, IAM, S3, Lambda, Transit Gateway, multi-account VPC networking",
@@ -346,7 +346,7 @@ export const experience = [
       "Led 24×7 on-call using Datadog, Dynatrace, and Splunk for incident detection and triage; held <0.01% error-rate SLO; cut MTTD 50% and MTTR 35%",
       "Managed infrastructure-as-code with Terraform and maintained CI/CD pipelines for platform services",
       "Planned and ran quarterly DR exercises, failing over Aurora/RDS and EKS within 8-hour RTO/RPO targets",
-      "DevDash (side project): SQS → S3 workflow, vault secret delivery, and PagerDuty paging via approval-gated Lambda - built in TypeScript/Node.js, used by 50–100 engineers",
+      "DevDash: SQS → S3 workflow, vault secret delivery, and PagerDuty paging via approval-gated Lambda - built in TypeScript/Node.js, used by 50–100 engineers",
     ],
     stack: ["AWS EKS", "Aurora/RDS", "Lambda", "Terraform", "Python", "Bash", "Datadog", "Dynatrace", "Splunk", "TypeScript", "CI/CD"],
     projectRef: ["aws-platform", "devdash"],
