@@ -199,13 +199,15 @@ export default function Hero() {
                 sequence={[
                   "Platform Engineer",
                   2000,
+                  "Backend Engineer",
+                  2000,
+                  "Full-Stack Engineer",
+                  2000,
                   "Site Reliability Engineer",
                   2000,
                   "Cloud Infrastructure Engineer",
                   2000,
                   "Systems Researcher",
-                  2000,
-                  "Kubernetes Operator",
                   2000,
                 ]}
                 wrapper="span"

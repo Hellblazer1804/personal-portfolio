@@ -1,8 +1,8 @@
 export const personal = {
   name: "Bandhan Patel",
-  title: "Platform Engineer",
+  title: "Platform · Backend · Full-Stack Engineer",
   tagline:
-    "Building the infrastructure that lets teams ship reliably - from Kubernetes clusters to AI-native automation, across AWS and GCP.",
+    "Building reliable systems end to end - from Kubernetes platform infrastructure and backend services to full-stack applications, across AWS and GCP.",
   email: "bandhanpatel1804@gmail.com",
   linkedin: "https://linkedin.com/in/bpatel1804",
   github: "https://github.com/Hellblazer1804",
@@ -16,19 +16,11 @@ export const heroStats = [
   { value: "AWS", label: "Solutions Architect – Associate" },
 ];
 
-export const aboutText = `I'm a cloud infrastructure and backend engineer who has spent 4+ years building and
-operating distributed systems on Kubernetes across AWS and GCP. I care about systems
-that stay up: I held a 99.9999% uptime SLO across 6 PCI-supporting production accounts
-at American Express on 24×7 on-call.
+export const aboutText = `I'm a software engineer with 4+ years across platform infrastructure, backend services, and full-stack development - building and operating distributed systems on Kubernetes across AWS and GCP. I care about systems that stay up: I held a 99.9999% uptime SLO across 6 PCI-supporting production accounts at American Express on 24×7 on-call.
 
-On the research side, my M.S. thesis turned into a peer-reviewed paper at ACM Middleware '26.
-FaaSpot is a serverless workflow execution system that runs entirely on spot instances-no
-on-demand fallback-and still beats every hybrid baseline on success rate, cost, and latency
-by exploiting DAG topology to place checkpoints and scale proactively before preemptions happen.
+On the backend side, I've built TypeScript/Node.js and Java Spring Boot services at scale - from developer tooling platforms to high-throughput microservices handling 10K+ req/min. On the research side, my M.S. thesis became a peer-reviewed paper at ACM Middleware '26: FaaSpot runs serverless DAG workflows entirely on spot instances with no on-demand fallback, beating every hybrid baseline on success rate, cost, and latency.
 
-I'm drawn to work that sits at the intersection of systems depth and real-world reliability engineering:
-platform tooling, cost optimization, multi-agent AI infrastructure, and the kind of on-call work
-where the decisions you make at 2 a.m. actually matter.`;
+I'm open to senior Platform Engineer, SRE, Backend Engineer, and Full-Stack Engineer roles - especially work that sits at the intersection of systems depth and real-world reliability: platform tooling, cost optimization, backend infrastructure, and the kind of on-call work where the decisions you make at 2 a.m. actually matter.`;
 
 export const skills = [
   {

@@ -22,11 +22,13 @@ const rajdhani = Rajdhani({
 });
 
 export const metadata: Metadata = {
-  title: "Bandhan Patel - Platform Engineer",
+  title: "Bandhan Patel - Platform, Backend & Full-Stack Engineer",
   description:
-    "Cloud infrastructure and platform engineer with 4+ years building distributed systems on Kubernetes (AWS & GCP). Author of a peer-reviewed paper at ACM Middleware '26. 99.9999% uptime on 24×7 on-call.",
+    "Software engineer with 4+ years across platform infrastructure, backend services, and full-stack development on Kubernetes (AWS & GCP). ACM Middleware '26 author. 99.9999% uptime on 24x7 on-call.",
   keywords: [
     "Platform Engineer",
+    "Backend Engineer",
+    "Full-Stack Engineer",
     "Site Reliability Engineer",
     "Cloud Infrastructure",
     "Kubernetes",
@@ -37,9 +39,9 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "Bandhan Patel" }],
   openGraph: {
-    title: "Bandhan Patel - Platform Engineer",
+    title: "Bandhan Patel - Platform, Backend & Full-Stack Engineer",
     description:
-      "Cloud infrastructure and platform engineer. ACM Middleware '26 author. 99.9999% uptime on 24×7 on-call.",
+      "Platform, backend, and full-stack engineer. ACM Middleware '26 author. 99.9999% uptime on 24x7 on-call.",
     type: "website",
   },
 };
