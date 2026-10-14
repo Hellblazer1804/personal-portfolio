@@ -73,7 +73,7 @@ export default function About() {
                     <span className="mt-1.5 w-1 h-1 flex-shrink-0" style={{ backgroundColor: "#0077ee" }} />
                     <div>
                       <p className="text-sm font-medium" style={{ color: "#c0d8f4" }}>
-                        {e.degree} — {e.school}
+                        {e.degree} - {e.school}
                       </p>
                       <p className="text-xs font-mono mt-0.5" style={{ color: "#2a4a6a" }}>
                         {e.year}{e.note && ` · ${e.note}`}

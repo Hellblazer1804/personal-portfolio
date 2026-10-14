@@ -2,7 +2,7 @@ export const personal = {
   name: "Bandhan Patel",
   title: "Platform Engineer",
   tagline:
-    "Building the infrastructure that lets teams ship reliably — from Kubernetes clusters to AI-native automation, across AWS and GCP.",
+    "Building the infrastructure that lets teams ship reliably - from Kubernetes clusters to AI-native automation, across AWS and GCP.",
   email: "bandhanpatel1804@gmail.com",
   linkedin: "https://linkedin.com/in/bpatel1804",
   github: "https://github.com/Hellblazer1804",
@@ -22,8 +22,8 @@ that stay up: I held a 99.9999% uptime SLO across 6 PCI-supporting production ac
 at American Express on 24×7 on-call.
 
 On the research side, my M.S. thesis turned into a peer-reviewed paper at ACM Middleware '26.
-FaaSpot is a serverless workflow execution system that runs entirely on spot instances—no
-on-demand fallback—and still beats every hybrid baseline on success rate, cost, and latency
+FaaSpot is a serverless workflow execution system that runs entirely on spot instances-no
+on-demand fallback-and still beats every hybrid baseline on success rate, cost, and latency
 by exploiting DAG topology to place checkpoints and scale proactively before preemptions happen.
 
 I'm drawn to work that sits at the intersection of systems depth and real-world reliability engineering:
@@ -99,11 +99,11 @@ export const projects = [
     badgeColor: "#22d3ee",
     caseStudy: {
       situation:
-        "Serverless workloads on cloud spot instances offer 70–90% cost savings but suffer frequent preemptions. Every prior system hedged by mixing in on-demand nodes for high-risk tasks — forfeiting the savings that made spot attractive in the first place.",
+        "Serverless workloads on cloud spot instances offer 70–90% cost savings but suffer frequent preemptions. Every prior system hedged by mixing in on-demand nodes for high-risk tasks - forfeiting the savings that made spot attractive in the first place.",
       challenge:
-        "Three compounding problems surfaced early: reactive checkpointing created too much overhead and was too slow to matter once a preemption was already happening; the autoscaler was similarly reactive — by the time it triggered, nodes were already gone; and the retry service was single-threaded, so retries queued linearly and tanked success rates instead of recovering them.",
+        "Three compounding problems surfaced early: reactive checkpointing created too much overhead and was too slow to matter once a preemption was already happening; the autoscaler was similarly reactive - by the time it triggered, nodes were already gone; and the retry service was single-threaded, so retries queued linearly and tanked success rates instead of recovering them.",
       solution:
-        "Replaced reactive with proactive: Kaplan-Meier survival curves fit on emulator preemption traces give early warning, gating a Thompson Sampling bandit that uses live failure and cost data to scale up before preemptions hit — without overprovisioning. Rewrote the retry service as a 50–100 thread concurrent executor, which alone delivered a 40–50% boost to workflow success rates. Selective checkpointing (DAG-aware, not uniform) kept overhead low while still enabling lineage-based recovery.",
+        "Replaced reactive with proactive: Kaplan-Meier survival curves fit on emulator preemption traces give early warning, gating a Thompson Sampling bandit that uses live failure and cost data to scale up before preemptions hit - without overprovisioning. Rewrote the retry service as a 50–100 thread concurrent executor, which alone delivered a 40–50% boost to workflow success rates. Selective checkpointing (DAG-aware, not uniform) kept overhead low while still enabling lineage-based recovery.",
     },
     metrics: [
       { value: "89.03%", label: "Avg. workflow success rate" },
@@ -112,7 +112,7 @@ export const projects = [
       { value: "17.5K", label: "Lines of Python" },
     ],
     highlights: [
-      "Raised success from 39% (naive spot) to 89.03% — outperforming every hybrid baseline on all three metrics simultaneously",
+      "Raised success from 39% (naive spot) to 89.03% - outperforming every hybrid baseline on all three metrics simultaneously",
       "Built FaaSpot's Kubernetes platform from scratch: a 16-node kubeadm VM cluster on bare metal running Fission",
       "Two-layer autoscaler: Kaplan-Meier survival model gates a Thompson Sampling contextual bandit that scales Deployment replicas onto safer nodes",
       "Checkpoint and lineage-based retry controllers on transactional MySQL, resuming failed runs from the nearest checkpoint",
@@ -130,7 +130,7 @@ export const projects = [
     badgeColor: "#4ade80",
     caseStudy: {
       situation:
-        "Geotab's SRE team was manually triaging incidents across GKE clusters, Prometheus metrics, and BigQuery analytics — three disconnected systems with no unified signal correlation. Incidents required hopping between dashboards before a root cause could even be hypothesized.",
+        "Geotab's SRE team was manually triaging incidents across GKE clusters, Prometheus metrics, and BigQuery analytics - three disconnected systems with no unified signal correlation. Incidents required hopping between dashboards before a root cause could even be hypothesized.",
       challenge:
         "Surface root-cause hypotheses faster across a fragmented observability stack without replacing human judgment for remediation decisions or introducing an autonomous system that could take unreviewed actions in production.",
       solution:
@@ -144,7 +144,7 @@ export const projects = [
     ],
     highlights: [
       "Orchestrator dispatches sub-agents concurrently, each responsible for a single observability domain (metrics, logs, cloud APIs)",
-      "Human-in-the-loop approval gate prevents autonomous remediation — agents propose, humans decide",
+      "Human-in-the-loop approval gate prevents autonomous remediation - agents propose, humans decide",
       "MCP server layer provides structured tool interfaces for Prometheus queries, BigQuery analytics, and gcloud operations",
       "Deployed on GKE as part of the Argo Workflows migration from PowerShell-based task automation",
     ],
@@ -160,11 +160,11 @@ export const projects = [
     badgeColor: "#a78bfa",
     caseStudy: {
       situation:
-        "American Express developers constantly needed access to infrastructure resources — SQS message contents, vault secrets, on-call contacts — that required SRE intervention. Every request was a manual back-and-forth Slack thread: slow for developers, and a constant interrupt for the SRE team.",
+        "American Express developers constantly needed access to infrastructure resources - SQS message contents, vault secrets, on-call contacts - that required SRE intervention. Every request was a manual back-and-forth Slack thread: slow for developers, and a constant interrupt for the SRE team.",
       challenge:
         "Build a self-service platform that lets developers trigger infrastructure operations safely, with a human approval gate before any action executes, without granting them direct access to production systems.",
       solution:
-        "Built DevDash as an internal web app with structured request workflows. Example: a developer fills a form with a queue name → a webhook posts the request to the SRE Slack channel → on approval, a Lambda fetches the SQS contents, zips them, stores the archive in S3, and DMs the developer a signed URL — all without the dev touching the queue directly. The same approval-gated pattern covered vault secret retrieval. PagerDuty integration pulled live on-call schedules so engineers could be paged directly from the platform.",
+        "Built DevDash as an internal web app with structured request workflows. Example: a developer fills a form with a queue name → a webhook posts the request to the SRE Slack channel → on approval, a Lambda fetches the SQS contents, zips them, stores the archive in S3, and DMs the developer a signed URL - all without the dev touching the queue directly. The same approval-gated pattern covered vault secret retrieval. PagerDuty integration pulled live on-call schedules so engineers could be paged directly from the platform.",
     },
     metrics: [
       { value: "50–100", label: "Engineers served" },
@@ -174,10 +174,10 @@ export const projects = [
     ],
     highlights: [
       "SQS → S3 workflow: form submission → Slack webhook → SRE approval → Lambda fetches queue contents → zips → stores in S3 → signed URL delivered to developer's Slack DM",
-      "Vault secret retrieval: same approval-gated Lambda pattern — developer requests, SRE approves, secret delivered to their Slack",
+      "Vault secret retrieval: same approval-gated Lambda pattern - developer requests, SRE approves, secret delivered to their Slack",
       "PagerDuty integration: live on-call schedule display, one-click paging from the platform",
       "TypeScript/Node.js REST API backend handling multiple self-service operation types",
-      "Every infrastructure action gated by an approval workflow — zero direct production access for developers",
+      "Every infrastructure action gated by an approval workflow - zero direct production access for developers",
     ],
     stack: ["TypeScript", "Node.js", "AWS Lambda", "SQS", "S3", "PagerDuty API", "Slack API"],
     github: null,
@@ -193,7 +193,7 @@ export const projects = [
       situation:
         "Shared AWS infrastructure at American Express spanned 6 PCI-supporting production accounts with no systematic cost controls. Cloud spend was inflated across three categories: oversized instances, idle resources (unattached volumes, zombie EKS nodes), and autoscaling gaps where services ran at full capacity off-hours.",
       challenge:
-        "Maintain 99.9999% uptime under 24×7 on-call in a regulated PCI environment while simultaneously identifying and eliminating over $200K/month in cloud waste — without disrupting live workloads.",
+        "Maintain 99.9999% uptime under 24×7 on-call in a regulated PCI environment while simultaneously identifying and eliminating over $200K/month in cloud waste - without disrupting live workloads.",
       solution:
         "Built a Python rightsizing engine targeting all three waste categories: automated instance rightsizing from Datadog utilization metrics, idle-resource cleanup sweeps, and off-hours autoscaling schedules. Structured SLO tracking in Datadog held <0.01% error rates across all services. Ran quarterly DR exercises failing over Aurora/RDS and EKS within 8-hour RTO/RPO targets, including executing a live region-level failover during a data center incident.",
     },
@@ -222,9 +222,9 @@ export const projects = [
     badgeColor: "#f59e0b",
     caseStudy: {
       situation:
-        "University of Georgia DBMS course required a team to build a full-stack application demonstrating end-to-end relational database design — from conceptual modeling through normalized deployment — using a production-grade technology stack.",
+        "University of Georgia DBMS course required a team to build a full-stack application demonstrating end-to-end relational database design - from conceptual modeling through normalized deployment - using a production-grade technology stack.",
       challenge:
-        "Design a normalized relational schema for a credit card marketplace from scratch, wire it to a secure authenticated backend, and deploy it in a containerized environment — with the team depending on the database and backend being solid before frontend work could begin.",
+        "Design a normalized relational schema for a credit card marketplace from scratch, wire it to a secure authenticated backend, and deploy it in a containerized environment - with the team depending on the database and backend being solid before frontend work could begin.",
       solution:
         "Led the backend and database side of the team project: drove schema design through UML → ER → BCNF decomposition → 3NF synthesis (7 normalized tables), implemented JWT + BCrypt authentication, and built four REST API domains (Customer, Card, Cart, Transaction) via Spring Boot with Dockerized PostgreSQL.",
     },
@@ -255,15 +255,15 @@ export const experience = [
     location: "Atlanta, GA",
     caseStudy: {
       situation:
-        "Geotab's automation infrastructure ran on a PowerShell-based task platform that had grown brittle — high failure rates, no native integration with Argo Workflows, and VM workloads that needed migrating to GKE. I also owned DR on-call for the live Argo and automated task platforms.",
+        "Geotab's automation infrastructure ran on a PowerShell-based task platform that had grown brittle - high failure rates, no native integration with Argo Workflows, and VM workloads that needed migrating to GKE. I also owned DR on-call for the live Argo and automated task platforms.",
       challenge:
-        "Modernize the platform to Python and Argo Workflows on GKE while simultaneously shipping a production AI observability system and maintaining DR coverage for the live platform — including real incidents.",
+        "Modernize the platform to Python and Argo Workflows on GKE while simultaneously shipping a production AI observability system and maintaining DR coverage for the live platform - including real incidents.",
       solution:
-        "Rewrote the task platform in Python with native Argo Workflows support (−30% failure rate), built the multi-agent AI ops system with Claude Code and MCP servers (MTTD −40%, MTTR −30%), and delivered Terraform-driven GKE provisioning that cut deployment time 80%+. During a GCE AZ power outage, detected the failure, pulled the affected VM list, and ran our automated failover script to restore customer VMs — recovered in ~1 hour.",
+        "Rewrote the task platform in Python with native Argo Workflows support (−30% failure rate), built the multi-agent AI ops system with Claude Code and MCP servers (MTTD −40%, MTTR −30%), and delivered Terraform-driven GKE provisioning that cut deployment time 80%+. During a GCE AZ power outage, detected the failure, pulled the affected VM list, and ran our automated failover script to restore customer VMs - recovered in ~1 hour.",
     },
     highlights: [
       "Migrating the PowerShell-based automated task platform to Python for native Argo Workflows support; reduced task failure rates by 30%",
-      "Built a production multi-agent AI system as a Claude Code skill — orchestrator runs agents concurrently against Prometheus, BigQuery, and gcloud APIs through MCP servers; cut MTTD 40%, MTTR 30%",
+      "Built a production multi-agent AI system as a Claude Code skill - orchestrator runs agents concurrently against Prometheus, BigQuery, and gcloud APIs through MCP servers; cut MTTD 40%, MTTR 30%",
       "Leading the migration of VM workloads to Kubernetes-native Argo Workflows on GKE across a multi-region architecture; Terraform modules in CI/CD cut provisioning time by 80%+",
       "Handling DR on-call for the Argo and automated task platforms (GKE node failovers, VM backups, OSR image updates); executed region failovers during a data center power outage, recovering in ~1 hour",
     ],
@@ -279,16 +279,16 @@ export const experience = [
       situation:
         "Serverless workloads on cloud spot instances offer 70–90% cost savings but suffer frequent preemptions. Every prior system achieved reliability by blending in on-demand nodes, negating the cost advantage that motivated spot in the first place.",
       challenge:
-        "Three compounding problems had to be solved: reactive checkpointing was too slow and created too much overhead to be useful; reactive autoscaling triggered after preemptions had already landed; and the retry service was single-threaded — retries queued linearly and hurt success rates rather than recovering them.",
+        "Three compounding problems had to be solved: reactive checkpointing was too slow and created too much overhead to be useful; reactive autoscaling triggered after preemptions had already landed; and the retry service was single-threaded - retries queued linearly and hurt success rates rather than recovering them.",
       solution:
-        "Switched to proactive scaling: Kaplan-Meier survival curves fit on emulator preemption traces give early warning, gating a Thompson Sampling bandit on live failure and cost data to scale before preemptions hit without overprovisioning. Rebuilt the retry service as a 50–100 thread concurrent executor — this single change delivered a 40–50% success rate boost. DAG-aware selective checkpointing kept overhead manageable. Result: 39% → 89.03% success at $0.018/run. Accepted at ACM Middleware '26.",
+        "Switched to proactive scaling: Kaplan-Meier survival curves fit on emulator preemption traces give early warning, gating a Thompson Sampling bandit on live failure and cost data to scale before preemptions hit without overprovisioning. Rebuilt the retry service as a 50–100 thread concurrent executor - this single change delivered a 40–50% success rate boost. DAG-aware selective checkpointing kept overhead manageable. Result: 39% → 89.03% success at $0.018/run. Accepted at ACM Middleware '26.",
     },
     highlights: [
       "Designed and built FaaSpot (ACM Middleware '26): ~17.5K lines of Python running serverless DAG workflows on spot",
       "Built FaaSpot's Kubernetes platform from scratch: 16-node kubeadm VM cluster on bare metal running Fission, with NodePort routing and per-task ConfigMaps",
       "Wrote FaaSpot's two-layer autoscaler: Kaplan-Meier survival model gates a Thompson Sampling contextual bandit that scales Deployment replicas onto safer nodes, beating the best fixed policy by 11–17pp on success",
       "Built checkpoint and lineage-based retry controllers on transactional MySQL, resuming failed runs from the nearest checkpoint",
-      "Raised workflow success from 39% (naive spot) to 89.03% at $0.018 per run — under half the best baseline's cost, 2.3× lower latency",
+      "Raised workflow success from 39% (naive spot) to 89.03% at $0.018 per run - under half the best baseline's cost, 2.3× lower latency",
     ],
     stack: ["Python", "Kubernetes (kubeadm)", "Fission", "MySQL", "AWS Spot", "Prometheus"],
   },
@@ -300,7 +300,7 @@ export const experience = [
     location: "Atlanta, GA",
     caseStudy: {
       situation:
-        "Two parallel workstreams. DevDash: developers constantly needed infrastructure resources (SQS contents, vault secrets, on-call contacts) via manual SRE Slack threads — slow for devs, a constant interrupt for the team. AWS Platform: 6 PCI-supporting production accounts had no systematic cost controls; spend climbing across oversized instances, idle resources, and autoscaling gaps.",
+        "Two parallel workstreams. DevDash: developers constantly needed infrastructure resources (SQS contents, vault secrets, on-call contacts) via manual SRE Slack threads - slow for devs, a constant interrupt for the team. AWS Platform: 6 PCI-supporting production accounts had no systematic cost controls; spend climbing across oversized instances, idle resources, and autoscaling gaps.",
       challenge:
         "For DevDash: build a self-service approval-gated platform so developers can trigger infrastructure operations without direct production access. For AWS: reclaim $200K+/month in cloud spend without disrupting live PCI workloads while holding 99.9999% uptime under 24×7 on-call.",
       solution:
@@ -346,7 +346,7 @@ export const education = [
     degree: "M.S. Computer Science",
     school: "University of Georgia",
     year: "Aug 2026",
-    note: "Thesis: FaaSpot — accepted at ACM Middleware '26",
+    note: "Thesis: FaaSpot - accepted at ACM Middleware '26",
   },
   {
     degree: "B.S. Computer Science",
@@ -385,7 +385,7 @@ export const photos: Photo[] = [
     location: "Atlanta, GA",
     date: "October 2023",
     story:
-      "Go Jackets! Night games at Bobby Dodd hit differently. The lights turn the field into something almost cinematic — the crowd packed in, the glow cutting through the Atlanta night. There's a particular kind of energy in a stadium after dark that daylight games just can't replicate.",
+      "Go Jackets! Night games at Bobby Dodd hit differently. The lights turn the field into something almost cinematic - the crowd packed in, the glow cutting through the Atlanta night. There's a particular kind of energy in a stadium after dark that daylight games just can't replicate.",
     tags: ["stadium", "night", "sports", "atlanta", "georgia tech"],
   },
   {
@@ -395,7 +395,7 @@ export const photos: Photo[] = [
     location: "Ohio",
     date: "April 2024",
     story:
-      "I happened to be visiting family in Ohio on April 8, 2024 — which put me right inside the path of totality for the Great North American Solar Eclipse. When it happened, the temperature dropped, the birds went quiet, and day turned to night in the middle of the afternoon. Two minutes and seven seconds of totality felt like standing inside something impossible.",
+      "I happened to be visiting family in Ohio on April 8, 2024 - which put me right inside the path of totality for the Great North American Solar Eclipse. When it happened, the temperature dropped, the birds went quiet, and day turned to night in the middle of the afternoon. Two minutes and seven seconds of totality felt like standing inside something impossible.",
     tags: ["astronomy", "eclipse", "nature", "ohio"],
   },
   {
@@ -405,7 +405,7 @@ export const photos: Photo[] = [
     location: "Athens, GA",
     date: "October 2024",
     story:
-      "Go Dawgs! Sanford Stadium hits different when you're a Dawg. The hedges are one of the oldest traditions in college football — teams have been playing between them since 1929. There's a reverence to the place that you feel the moment you walk through the gate.",
+      "Go Dawgs! Sanford Stadium hits different when you're a Dawg. The hedges are one of the oldest traditions in college football - teams have been playing between them since 1929. There's a reverence to the place that you feel the moment you walk through the gate.",
     tags: ["stadium", "uga", "football", "georgia"],
   },
   {
@@ -425,7 +425,7 @@ export const photos: Photo[] = [
     location: "Wings Over North Georgia · Rome, GA",
     date: "October 2025",
     story:
-      "My friend and I drove out to Wings Over North Georgia in Rome specifically to see the Blue Angels — and they canceled. But the show went on with vintage warbirds and formation flyers, and honestly this shot made the trip worth it. Two aircraft punching through a broken cloud layer, silhouetted against the sky. Sometimes the plan B is the better photograph.",
+      "My friend and I drove out to Wings Over North Georgia in Rome specifically to see the Blue Angels - and they canceled. But the show went on with vintage warbirds and formation flyers, and honestly this shot made the trip worth it. Two aircraft punching through a broken cloud layer, silhouetted against the sky. Sometimes the plan B is the better photograph.",
     tags: ["aviation", "airshow", "clouds", "vintage", "georgia"],
   },
   {
@@ -435,7 +435,7 @@ export const photos: Photo[] = [
     location: "Lake Lanier, GA",
     date: "November 2025",
     story:
-      "Aurora borealis in Georgia. A geomagnetic storm pushed the Kp index high enough that the northern lights were visible this far south — and Lake Lanier provided a perfect mirror. Seeing the aurora dance above a Georgia lake felt genuinely surreal. Most people I know didn't even know it was happening.",
+      "Aurora borealis in Georgia. A geomagnetic storm pushed the Kp index high enough that the northern lights were visible this far south - and Lake Lanier provided a perfect mirror. Seeing the aurora dance above a Georgia lake felt genuinely surreal. Most people I know didn't even know it was happening.",
     tags: ["aurora", "night sky", "georgia", "lake"],
   },
   {
@@ -445,7 +445,7 @@ export const photos: Photo[] = [
     location: "Washington, D.C.",
     date: "April 2026",
     story:
-      "Peak bloom on the Tidal Basin. The National Park Service tracks it to within days and the window is short — maybe a week of full bloom before wind and rain strip the petals. I got lucky with a calm afternoon and soft light. The pink against the grey of the city felt like the city had briefly forgotten to be serious.",
+      "Peak bloom on the Tidal Basin. The National Park Service tracks it to within days and the window is short - maybe a week of full bloom before wind and rain strip the petals. I got lucky with a calm afternoon and soft light. The pink against the grey of the city felt like the city had briefly forgotten to be serious.",
     tags: ["spring", "dc", "cherry blossoms", "tidal basin"],
   },
   {
@@ -455,7 +455,7 @@ export const photos: Photo[] = [
     location: "Washington, D.C.",
     date: "April 2026",
     story:
-      "The Washington Monument is one of those structures that photographs poorly until it doesn't. Finding the right angle and the right sky turns it from a landmark into a composition. The sheer verticality of it — 555 feet of marble and granite — still commands the skyline the way it was designed to.",
+      "The Washington Monument is one of those structures that photographs poorly until it doesn't. Finding the right angle and the right sky turns it from a landmark into a composition. The sheer verticality of it - 555 feet of marble and granite - still commands the skyline the way it was designed to.",
     tags: ["dc", "architecture", "monument", "landmark"],
   },
   {
@@ -465,7 +465,7 @@ export const photos: Photo[] = [
     location: "Arlington, VA",
     date: "April 2026",
     story:
-      "Rows of white headstones extending in every direction, perfectly aligned no matter the angle you look. Arlington is one of those places that enforces a particular kind of quiet — it's not solemn in a sad way, it's the quiet of something that deserves to be taken seriously. To every service member resting here: thank you. The freedoms we live with every day were paid for by the people beneath these markers, and walking among them is a reminder that none of it was free.",
+      "Rows of white headstones extending in every direction, perfectly aligned no matter the angle you look. Arlington is one of those places that enforces a particular kind of quiet - it's not solemn in a sad way, it's the quiet of something that deserves to be taken seriously. To every service member resting here: thank you. The freedoms we live with every day were paid for by the people beneath these markers, and walking among them is a reminder that none of it was free.",
     tags: ["memorial", "history", "dc", "virginia"],
   },
   // ── North Cascades National Park ──────────────────────────────
@@ -476,7 +476,7 @@ export const photos: Photo[] = [
     location: "North Cascades National Park, WA",
     date: "August 2026",
     story:
-      "The first time you see Diablo Lake you think the color can't be real — a deep, almost Caribbean turquoise sitting in the middle of the North Cascades. It's glacial flour suspended in the water, fine rock particles ground off by the glaciers above that scatter light in a way that produces that impossible blue-green. It looks photoshopped. It isn't.",
+      "The first time you see Diablo Lake you think the color can't be real - a deep, almost Caribbean turquoise sitting in the middle of the North Cascades. It's glacial flour suspended in the water, fine rock particles ground off by the glaciers above that scatter light in a way that produces that impossible blue-green. It looks photoshopped. It isn't.",
     tags: ["lake", "north cascades", "national park", "pnw"],
   },
   // ── Olympic National Park ──────────────────────────────────────
@@ -487,7 +487,7 @@ export const photos: Photo[] = [
     location: "Olympic National Park, WA",
     date: "August 2026",
     story:
-      "Crescent Lake in Olympic National Park on a calm morning is as close to a perfect mirror as I've ever seen. The Olympics reflect in the water so cleanly you have to look twice to find the actual horizon. Part of a cousins trip through Washington state — this was one of those stops where nobody wanted to leave.",
+      "Crescent Lake in Olympic National Park on a calm morning is as close to a perfect mirror as I've ever seen. The Olympics reflect in the water so cleanly you have to look twice to find the actual horizon. Part of a cousins trip through Washington state - this was one of those stops where nobody wanted to leave.",
     tags: ["lake", "olympic national park", "reflection", "pnw"],
   },
   {
@@ -497,7 +497,7 @@ export const photos: Photo[] = [
     location: "Olympic National Park · Hoh Rainforest, WA",
     date: "August 2026",
     story:
-      "The Hoh Rainforest on the Olympic Peninsula receives up to 14 feet of rain per year, and you feel every inch of it in the moss. Ancient bigleaf maples draped floor to canopy in deep green, the light filtered down soft and diffuse. The Hall of Mosses trail is short — barely a mile — but it feels like walking through a different continent.",
+      "The Hoh Rainforest on the Olympic Peninsula receives up to 14 feet of rain per year, and you feel every inch of it in the moss. Ancient bigleaf maples draped floor to canopy in deep green, the light filtered down soft and diffuse. The Hall of Mosses trail is short - barely a mile - but it feels like walking through a different continent.",
     tags: ["rainforest", "moss", "olympic national park", "hoh"],
   },
   // ── Mount Rainier National Park ────────────────────────────────
@@ -508,7 +508,7 @@ export const photos: Photo[] = [
     location: "Mount Rainier National Park, WA",
     date: "August 2026",
     story:
-      "A Douglas fir framing the summit. Rainier dominates the skyline at 14,411 feet — visible from Seattle on clear days, looming over everything in its orbit. Standing at its base with old-growth forest in the foreground, you realize how much of Washington's identity is just this mountain.",
+      "A Douglas fir framing the summit. Rainier dominates the skyline at 14,411 feet - visible from Seattle on clear days, looming over everything in its orbit. Standing at its base with old-growth forest in the foreground, you realize how much of Washington's identity is just this mountain.",
     tags: ["mountain", "forest", "mount rainier", "national park"],
   },
   {
@@ -518,7 +518,7 @@ export const photos: Photo[] = [
     location: "Mount Rainier National Park, WA",
     date: "August 2026",
     story:
-      "Reflection Lake lives up to its name. When the wind dies and the surface goes glassy, the volcano sits doubled in the water — summit to summit. We drove the loop road around the south side of the park specifically to catch this, and the timing held. One of those shots where the conditions do the work.",
+      "Reflection Lake lives up to its name. When the wind dies and the surface goes glassy, the volcano sits doubled in the water - summit to summit. We drove the loop road around the south side of the park specifically to catch this, and the timing held. One of those shots where the conditions do the work.",
     tags: ["mountain", "reflection", "mount rainier", "national park"],
   },
   {
@@ -528,7 +528,7 @@ export const photos: Photo[] = [
     location: "Mount Rainier National Park, WA",
     date: "August 2026",
     story:
-      "Sometimes the best view is the one right in front of you. Rainier from the Paradise area at 5,400 feet — glaciers close enough to feel present, summit clear. It's technically just a parking lot, but a parking lot with one of the best views in the country.",
+      "Sometimes the best view is the one right in front of you. Rainier from the Paradise area at 5,400 feet - glaciers close enough to feel present, summit clear. It's technically just a parking lot, but a parking lot with one of the best views in the country.",
     tags: ["mountain", "glacier", "mount rainier", "paradise"],
   },
 ];

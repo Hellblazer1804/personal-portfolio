@@ -37,7 +37,7 @@ export default function Stack() {
           Technical Depth
         </h2>
         <p className="font-mono text-sm mb-10" style={{ color: "#2a4a6a" }}>
-          Tools I reach for in production — and the ones I&apos;ve built systems around.
+          Tools I reach for in production - and the ones I&apos;ve built systems around.
         </p>
 
         <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-3">

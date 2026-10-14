@@ -50,7 +50,7 @@ body::after {
 ::-webkit-scrollbar-thumb { background: #0c2040; border-radius: 0; }
 ::-webkit-scrollbar-thumb:hover { background: #0077ee66; }
 
-/* Abs card base — no rounding, subtle border + glow */
+/* Abs card base - no rounding, subtle border + glow */
 .abs-card {
   background: #040c18;
   border: 1px solid #0c2040;
