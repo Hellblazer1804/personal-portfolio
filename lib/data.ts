@@ -184,37 +184,6 @@ export const projects = [
     paper: false,
   },
   {
-    id: "devdash",
-    title: "DevDash",
-    subtitle: "Developer Self-Service Platform at American Express",
-    badge: "Developer Experience",
-    badgeColor: "#a78bfa",
-    caseStudy: {
-      situation:
-        "American Express developers constantly needed access to infrastructure resources - SQS message contents, vault secrets, on-call contacts - that required SRE intervention. Every request was a manual back-and-forth Slack thread: slow for developers, and a constant interrupt for the SRE team.",
-      challenge:
-        "Build a self-service platform that lets developers trigger infrastructure operations safely, with a human approval gate before any action executes, without granting them direct access to production systems.",
-      solution:
-        "Built DevDash as an internal web app with structured request workflows. Example: a developer fills a form with a queue name → a webhook posts the request to the SRE Slack channel → on approval, a Lambda fetches the SQS contents, zips them, stores the archive in S3, and DMs the developer a signed URL - all without the dev touching the queue directly. The same approval-gated pattern covered vault secret retrieval. PagerDuty integration pulled live on-call schedules so engineers could be paged directly from the platform.",
-    },
-    metrics: [
-      { value: "50–100", label: "Engineers served" },
-      { value: "0", label: "Direct prod access granted to devs" },
-      { value: "Lambda", label: "Event-driven execution layer" },
-      { value: "Slack", label: "Approval + delivery channel" },
-    ],
-    highlights: [
-      "SQS → S3 workflow: form submission → Slack webhook → SRE approval → Lambda fetches queue contents → zips → stores in S3 → signed URL delivered to developer's Slack DM",
-      "Vault secret retrieval: same approval-gated Lambda pattern - developer requests, SRE approves, secret delivered to their Slack",
-      "PagerDuty integration: live on-call schedule display, one-click paging from the platform",
-      "TypeScript/Node.js REST API backend handling multiple self-service operation types",
-      "Every infrastructure action gated by an approval workflow - zero direct production access for developers",
-    ],
-    stack: ["TypeScript", "Node.js", "AWS Lambda", "SQS", "S3", "PagerDuty API", "Slack API"],
-    github: null,
-    paper: false,
-  },
-  {
     id: "aws-platform",
     title: "AWS Platform Operations",
     subtitle: "PCI-Compliant Infrastructure SRE at American Express",
@@ -242,6 +211,37 @@ export const projects = [
       "Planned and ran quarterly DR exercises, failing over Aurora/RDS and EKS within 8-hour RTO/RPO targets",
     ],
     stack: ["AWS EKS", "Aurora/RDS", "Lambda", "Terraform", "Datadog", "Dynatrace", "Splunk", "Python"],
+    github: null,
+    paper: false,
+  },
+  {
+    id: "devdash",
+    title: "DevDash",
+    subtitle: "Developer Self-Service Platform at American Express",
+    badge: "Developer Experience",
+    badgeColor: "#a78bfa",
+    caseStudy: {
+      situation:
+        "American Express developers constantly needed access to infrastructure resources - SQS message contents, vault secrets, on-call contacts - that required SRE intervention. Every request was a manual back-and-forth Slack thread: slow for developers, and a constant interrupt for the SRE team.",
+      challenge:
+        "Build a self-service platform that lets developers trigger infrastructure operations safely, with a human approval gate before any action executes, without granting them direct access to production systems.",
+      solution:
+        "Built DevDash as an internal web app with structured request workflows. Example: a developer fills a form with a queue name → a webhook posts the request to the SRE Slack channel → on approval, a Lambda fetches the SQS contents, zips them, stores the archive in S3, and DMs the developer a signed URL - all without the dev touching the queue directly. The same approval-gated pattern covered vault secret retrieval. PagerDuty integration pulled live on-call schedules so engineers could be paged directly from the platform.",
+    },
+    metrics: [
+      { value: "50–100", label: "Engineers served" },
+      { value: "0", label: "Direct prod access granted to devs" },
+      { value: "Lambda", label: "Event-driven execution layer" },
+      { value: "Slack", label: "Approval + delivery channel" },
+    ],
+    highlights: [
+      "SQS → S3 workflow: form submission → Slack webhook → SRE approval → Lambda fetches queue contents → zips → stores in S3 → signed URL delivered to developer's Slack DM",
+      "Vault secret retrieval: same approval-gated Lambda pattern - developer requests, SRE approves, secret delivered to their Slack",
+      "PagerDuty integration: live on-call schedule display, one-click paging from the platform",
+      "TypeScript/Node.js REST API backend handling multiple self-service operation types",
+      "Every infrastructure action gated by an approval workflow - zero direct production access for developers",
+    ],
+    stack: ["TypeScript", "Node.js", "AWS Lambda", "SQS", "S3", "PagerDuty API", "Slack API"],
     github: null,
     paper: false,
   },
