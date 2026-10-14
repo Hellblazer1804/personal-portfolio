@@ -334,24 +334,22 @@ export const experience = [
     location: "Atlanta, GA",
     caseStudy: {
       situation:
-        "Two parallel workstreams. DevDash: developers constantly needed infrastructure resources (SQS contents, vault secrets, on-call contacts) via manual SRE Slack threads - slow for devs, a constant interrupt for the team. AWS Platform: 6 PCI-supporting production accounts had no systematic cost controls; spend climbing across oversized instances, idle resources, and autoscaling gaps.",
+        "Primary role: SRE owning shared AWS infrastructure across 6 PCI-supporting production accounts - EKS, RDS/Aurora, Lambda, IAM, and multi-account VPC networking - with no systematic cost controls and cloud spend climbing. On the side, developers constantly hit the team for manual infrastructure operations (SQS dumps, vault secrets, on-call contacts), creating a steady stream of interrupts.",
       challenge:
-        "For DevDash: build a self-service approval-gated platform so developers can trigger infrastructure operations without direct production access. For AWS: reclaim $200K+/month in cloud spend without disrupting live PCI workloads while holding 99.9999% uptime under 24×7 on-call.",
+        "Own the AWS platform at 99.9999% uptime under 24×7 on-call in a regulated PCI environment, reclaim $200K+/month in cloud waste, and automate away the manual developer requests - all simultaneously.",
       solution:
-        "DevDash: TypeScript/Node.js platform where developer form submissions trigger Slack webhooks → SRE approves → Lambda executes (SQS fetch → zip → S3 → signed URL to dev's Slack), covering queue reads, vault secrets, and PagerDuty paging. AWS platform: Python rightsizing engine targeting all three waste categories cut $200K+/month; 24×7 on-call using Datadog, Dynatrace, and Splunk for incident detection and triage held <0.01% error rates; quarterly DR exercises failed over Aurora and EKS within 8-hour RTO.",
+        "AWS Platform: Terraform-managed infrastructure with Python and Bash automation for rightsizing (oversized instances, idle resources, off-hours autoscaling) cut $200K+/month. 24×7 on-call across Datadog, Dynatrace, and Splunk held <0.01% error-rate SLOs; CI/CD pipelines and quarterly DR exercises kept the platform resilient. DevDash (side project): TypeScript/Node.js approval-gated platform where Lambda handles SQS dumps, vault secret delivery, and PagerDuty paging - eliminating the manual request queue entirely.",
     },
     highlights: [
-      "DevDash SQS workflow: developer submits queue name → Slack webhook → SRE approval → Lambda fetches contents, zips, stores in S3, returns signed URL to dev's Slack DM",
-      "DevDash vault secret retrieval: same approval-gated Lambda pattern for sensitive credential delivery without direct prod access",
-      "DevDash PagerDuty integration: live on-call schedule display, one-click paging from the platform",
-      "Built TypeScript/Node.js REST API backend for DevDash, used by 50–100 engineers",
-      "Operated shared AWS platform services across 6 PCI-supporting production accounts at 99.9999% uptime: EKS, RDS/Aurora (PostgreSQL), IAM, S3, Lambda, and multi-account VPC networking (Transit Gateway, peering)",
-      "Improved cost and capacity with Python-driven rightsizing and autoscaling, cutting cloud spend by $200K+/month",
-      "Led 24×7 on-call using Datadog, Dynatrace, and Splunk for incident detection and triage; held <0.01% error-rate SLO across all services; cut MTTD 50% and MTTR 35%",
+      "Operated shared AWS platform across 6 PCI-supporting production accounts at 99.9999% uptime: EKS, RDS/Aurora, IAM, S3, Lambda, Transit Gateway, multi-account VPC networking",
+      "Built Python and Bash automation for instance rightsizing, idle-resource cleanup, and off-hours autoscaling - cut cloud spend by $200K+/month",
+      "Led 24×7 on-call using Datadog, Dynatrace, and Splunk for incident detection and triage; held <0.01% error-rate SLO; cut MTTD 50% and MTTR 35%",
+      "Managed infrastructure-as-code with Terraform and maintained CI/CD pipelines for platform services",
       "Planned and ran quarterly DR exercises, failing over Aurora/RDS and EKS within 8-hour RTO/RPO targets",
+      "DevDash (side project): SQS → S3 workflow, vault secret delivery, and PagerDuty paging via approval-gated Lambda - built in TypeScript/Node.js, used by 50–100 engineers",
     ],
-    stack: ["TypeScript", "Node.js", "AWS EKS", "Aurora/RDS", "Terraform", "Datadog", "Dynatrace", "Splunk", "Python"],
-    projectRef: ["devdash", "aws-platform"],
+    stack: ["AWS EKS", "Aurora/RDS", "Lambda", "Terraform", "Python", "Bash", "Datadog", "Dynatrace", "Splunk", "TypeScript", "CI/CD"],
+    projectRef: ["aws-platform", "devdash"],
   },
   {
     company: "NCR Corporation",
