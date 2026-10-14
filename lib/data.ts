@@ -126,7 +126,7 @@ export const projects = [
     id: "multi-agent",
     title: "Multi-Agent AI Ops Platform",
     subtitle: "Production AI System for Infrastructure Observability at Geotab",
-    badge: "Production",
+    badge: "AI Incident Management",
     badgeColor: "#4ade80",
     caseStudy: {
       situation:
@@ -156,7 +156,7 @@ export const projects = [
     id: "georgia-express",
     title: "Georgia Express",
     subtitle: "Credit Card Application & Online Marketplace (DBMS Term Project)",
-    badge: "Univ. of Georgia",
+    badge: "Backend Lead · UGA",
     badgeColor: "#ba0c2f",
     caseStudy: {
       situation:
@@ -186,7 +186,7 @@ export const projects = [
     id: "devdash",
     title: "DevDash",
     subtitle: "Developer Self-Service Platform at American Express",
-    badge: "50–100 Engineers",
+    badge: "Developer Experience",
     badgeColor: "#a78bfa",
     caseStudy: {
       situation:
@@ -217,7 +217,7 @@ export const projects = [
     id: "aws-platform",
     title: "AWS Platform Operations",
     subtitle: "PCI-Compliant Infrastructure SRE at American Express",
-    badge: "99.9999% Uptime",
+    badge: "$200K+/mo Saved",
     badgeColor: "#0099ff",
     caseStudy: {
       situation:
