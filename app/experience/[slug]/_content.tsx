@@ -74,24 +74,44 @@ export default function ExperienceContent({ slug }: { slug: string }) {
           {job.period} · {job.location}
         </p>
 
-        <div className="space-y-4 mb-10">
-          {(["situation", "challenge", "solution"] as const).map((key) => (
-            <div
-              key={key}
-              className="relative p-6"
-              style={{ backgroundColor: "#040c18", border: `1px solid ${key === "solution" ? c + "33" : "#0c2040"}` }}
-            >
-              <Brackets color={key === "solution" ? c + "44" : "#0077ee22"} />
-              <p className="font-mono text-xs tracking-widest uppercase mb-3" style={{ color: key === "solution" ? c : "#1a3a5a" }}>
-                {key}
-              </p>
-              <p className="text-sm leading-relaxed" style={{ color: "#5888aa" }}>
-                {job.caseStudy[key]}
-              </p>
-            </div>
-          ))}
+        {/* Context callout */}
+        <div
+          className="mb-6 pl-5 py-1"
+          style={{ borderLeft: `2px solid ${c}55` }}
+        >
+          <p className="font-mono text-xs tracking-widest uppercase mb-2" style={{ color: c + "99" }}>
+            CONTEXT
+          </p>
+          <p className="text-sm leading-relaxed" style={{ color: "#5888aa" }}>
+            {job.caseStudy.situation}
+          </p>
         </div>
 
+        {/* The Work */}
+        <div className="relative p-6 mb-6" style={{ backgroundColor: "#040c18", border: `1px solid ${c}33` }}>
+          <Brackets color={c + "44"} />
+          <p className="font-mono text-xs tracking-widest uppercase mb-4" style={{ color: c }}>
+            THE WORK
+          </p>
+
+          <p className="font-mono text-xs tracking-widest uppercase mb-2" style={{ color: "#1a3a5a" }}>
+            WHAT I TOOK ON
+          </p>
+          <p className="text-sm leading-relaxed mb-5" style={{ color: "#5888aa" }}>
+            {job.caseStudy.challenge}
+          </p>
+
+          <div className="h-px mb-5" style={{ background: `linear-gradient(90deg, ${c}22, transparent)` }} />
+
+          <p className="font-mono text-xs tracking-widest uppercase mb-2" style={{ color: "#1a3a5a" }}>
+            WHAT I DELIVERED
+          </p>
+          <p className="text-sm leading-relaxed" style={{ color: "#5888aa" }}>
+            {job.caseStudy.solution}
+          </p>
+        </div>
+
+        {/* Key contributions */}
         <div className="relative p-6 mb-6" style={{ backgroundColor: "#040c18", border: "1px solid #0c2040" }}>
           <Brackets />
           <p className="font-mono text-xs tracking-widest uppercase mb-4" style={{ color: "#1a3a5a" }}>
