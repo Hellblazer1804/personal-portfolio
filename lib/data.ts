@@ -153,6 +153,36 @@ export const projects = [
     paper: false,
   },
   {
+    id: "georgia-express",
+    title: "Georgia Express",
+    subtitle: "Credit Card Application & Online Marketplace (DBMS Term Project)",
+    badge: "Univ. of Georgia",
+    badgeColor: "#ba0c2f",
+    caseStudy: {
+      situation:
+        "University of Georgia DBMS course required a team to build a full-stack application demonstrating end-to-end relational database design - from conceptual modeling through normalized deployment - using a production-grade technology stack.",
+      challenge:
+        "Design a normalized relational schema for a credit card marketplace from scratch, wire it to a secure authenticated backend, and deploy it in a containerized environment - with the team depending on the database and backend being solid before frontend work could begin.",
+      solution:
+        "Led the backend and database side of the team project: drove schema design through UML → ER → BCNF decomposition → 3NF synthesis (7 normalized tables), implemented JWT + BCrypt authentication, and built four REST API domains (Customer, Card, Cart, Transaction) via Spring Boot with Dockerized PostgreSQL.",
+    },
+    metrics: [
+      { value: "7", label: "Normalized tables (3NF)" },
+      { value: "JWT", label: "Stateless auth with BCrypt hashing" },
+      { value: "Docker", label: "Containerized Postgres deployment" },
+      { value: "4", label: "REST API domains" },
+    ],
+    highlights: [
+      "Full schema design pipeline: UML class diagram → ER diagram → BCNF decomposition → 3NF synthesis algorithm",
+      "JWT-based authentication with BCrypt password hashing and salting",
+      "RESTful APIs: Customer, Card, Cart, and Transaction domains",
+      "Docker-containerized PostgreSQL with Hibernate ORM via Spring Boot",
+    ],
+    stack: ["Java", "Spring Boot", "PostgreSQL", "Docker", "React", "JWT", "BCrypt"],
+    github: "https://github.com/Hellblazer1804",
+    paper: false,
+  },
+  {
     id: "devdash",
     title: "DevDash",
     subtitle: "Developer Self-Service Platform at American Express",
@@ -212,36 +242,6 @@ export const projects = [
     ],
     stack: ["AWS EKS", "Aurora/RDS", "Lambda", "Terraform", "Datadog", "Python", "Transit Gateway"],
     github: null,
-    paper: false,
-  },
-  {
-    id: "georgia-express",
-    title: "Georgia Express",
-    subtitle: "Credit Card Application & Online Marketplace (DBMS Term Project)",
-    badge: "Univ. of Georgia",
-    badgeColor: "#f59e0b",
-    caseStudy: {
-      situation:
-        "University of Georgia DBMS course required a team to build a full-stack application demonstrating end-to-end relational database design - from conceptual modeling through normalized deployment - using a production-grade technology stack.",
-      challenge:
-        "Design a normalized relational schema for a credit card marketplace from scratch, wire it to a secure authenticated backend, and deploy it in a containerized environment - with the team depending on the database and backend being solid before frontend work could begin.",
-      solution:
-        "Led the backend and database side of the team project: drove schema design through UML → ER → BCNF decomposition → 3NF synthesis (7 normalized tables), implemented JWT + BCrypt authentication, and built four REST API domains (Customer, Card, Cart, Transaction) via Spring Boot with Dockerized PostgreSQL.",
-    },
-    metrics: [
-      { value: "7", label: "Normalized tables (3NF)" },
-      { value: "JWT", label: "Stateless auth with BCrypt hashing" },
-      { value: "Docker", label: "Containerized Postgres deployment" },
-      { value: "4", label: "REST API domains" },
-    ],
-    highlights: [
-      "Full schema design pipeline: UML class diagram → ER diagram → BCNF decomposition → 3NF synthesis algorithm",
-      "JWT-based authentication with BCrypt password hashing and salting",
-      "RESTful APIs: Customer, Card, Cart, and Transaction domains",
-      "Docker-containerized PostgreSQL with Hibernate ORM via Spring Boot",
-    ],
-    stack: ["Java", "Spring Boot", "PostgreSQL", "Docker", "React", "JWT", "BCrypt"],
-    github: "https://github.com/Hellblazer1804",
     paper: false,
   },
 ];

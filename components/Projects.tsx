@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import Link from "next/link";
 import { projects } from "@/lib/data";
 
@@ -15,6 +16,15 @@ function Brackets({ color = "#0077ee33" }: { color?: string }) {
 }
 
 export default function Projects() {
+  const [expandedStack, setExpandedStack] = useState<Set<string>>(new Set());
+
+  const toggleStack = (id: string) =>
+    setExpandedStack((prev) => {
+      const next = new Set(prev);
+      next.has(id) ? next.delete(id) : next.add(id);
+      return next;
+    });
+
   return (
     <section className="py-24 px-6">
       <div className="max-w-6xl mx-auto">
@@ -96,8 +106,11 @@ export default function Projects() {
                   <p className="text-sm mb-4" style={{ color: "#2a4a6a" }}>{project.subtitle}</p>
 
                   {/* Stack tags */}
-                  <div className="flex flex-wrap gap-1.5">
-                    {project.stack.slice(0, 5).map((t, j) => (
+                  <div className="flex flex-wrap gap-1.5 items-center">
+                    {(expandedStack.has(project.id)
+                      ? project.stack
+                      : project.stack.slice(0, 5)
+                    ).map((t, j) => (
                       <span
                         key={j}
                         className="font-mono text-xs px-2 py-0.5 border"
@@ -107,9 +120,13 @@ export default function Projects() {
                       </span>
                     ))}
                     {project.stack.length > 5 && (
-                      <span className="font-mono text-xs" style={{ color: "#1a3a5a" }}>
-                        +{project.stack.length - 5} more
-                      </span>
+                      <button
+                        onClick={(e) => { e.preventDefault(); toggleStack(project.id); }}
+                        className="font-mono text-xs tracking-wider transition-colors duration-150"
+                        style={{ color: project.badgeColor, background: "none", border: "none", cursor: "pointer", padding: 0 }}
+                      >
+                        {expandedStack.has(project.id) ? "▲ less" : `+${project.stack.length - 5} more`}
+                      </button>
                     )}
                   </div>
                 </div>
