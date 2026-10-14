@@ -158,7 +158,7 @@ export default function Experience() {
                         e.currentTarget.style.boxShadow = "none";
                       }}
                     >
-                      CASE STUDY ↗
+                      FULL RECORD ↗
                     </Link>
                     {job.projectRef && (() => {
                       const refs = Array.isArray(job.projectRef) ? job.projectRef : [job.projectRef];
