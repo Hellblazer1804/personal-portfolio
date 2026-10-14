@@ -39,3 +39,13 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# RAW photo originals — keep locally, serve only converted JPEGs
+public/photos/*.DNG
+public/photos/*.dng
+public/photos/*.CR2
+public/photos/*.cr2
+public/photos/*.ARW
+public/photos/*.arw
+public/photos/*.NEF
+public/photos/*.nef

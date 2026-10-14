@@ -1,26 +1,95 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
+  --color-background: #010208;
+  --color-foreground: #c0d8f4;
+  --font-sans: var(--font-rajdhani);
   --font-mono: var(--font-geist-mono);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: #010208;
+  color: #c0d8f4;
+  font-family: var(--font-geist-sans), system-ui, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  background-image: radial-gradient(circle, rgba(0, 85, 180, 0.12) 1px, transparent 1px);
+  background-size: 28px 28px;
+  background-attachment: fixed;
+}
+
+/* Scan line overlay */
+body::after {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 3px,
+    rgba(0, 30, 100, 0.022) 3px,
+    rgba(0, 30, 100, 0.022) 4px
+  );
+  pointer-events: none;
+  z-index: 9998;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: #010208; }
+::-webkit-scrollbar-thumb { background: #0c2040; border-radius: 0; }
+::-webkit-scrollbar-thumb:hover { background: #0077ee66; }
+
+/* Abs card base — no rounding, subtle border + glow */
+.abs-card {
+  background: #040c18;
+  border: 1px solid #0c2040;
+  position: relative;
+}
+
+.abs-card:hover {
+  border-color: #1a4888;
+  box-shadow: 0 0 18px rgba(0, 119, 238, 0.1), inset 0 0 18px rgba(0, 119, 238, 0.04);
+}
+
+/* Corner bracket decoration */
+.abs-bracket::before,
+.abs-bracket::after,
+.abs-bracket .br-bl,
+.abs-bracket .br-br {
+  content: '';
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  border-color: rgba(0, 102, 204, 0.55);
+  border-style: solid;
+}
+.abs-bracket::before {
+  top: 0; left: 0;
+  border-width: 1px 0 0 1px;
+}
+.abs-bracket::after {
+  top: 0; right: 0;
+  border-width: 1px 1px 0 0;
+}
+
+/* Glow text on headings */
+.abs-glow-text {
+  text-shadow: 0 0 20px rgba(0, 119, 238, 0.4);
+}
+
+/* Accent line */
+.abs-rule {
+  height: 1px;
+  background: linear-gradient(90deg, #0077ee44, transparent);
 }
