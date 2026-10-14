@@ -237,11 +237,11 @@ export const projects = [
     highlights: [
       "Operated shared AWS services across 6 PCI-supporting production accounts: EKS, RDS/Aurora (PostgreSQL), IAM, S3, Lambda, Transit Gateway",
       "Python rightsizing engine cut $200K+/month by targeting oversized instances, idle resources, and autoscaling gaps simultaneously",
-      "Held <0.01% error-rate SLO across all services tracked in Datadog with structured alerting and runbooks",
-      "Led 24×7 on-call, cutting MTTD 50% and MTTR 35% through structured runbooks and SLO alerting",
+      "Led 24×7 on-call using Datadog, Dynatrace, and Splunk for incident detection and triage; held <0.01% error-rate SLO across all services",
+      "Cut MTTD 50% and MTTR 35% through structured runbooks, SLO alerting, and correlated observability across all three platforms",
       "Planned and ran quarterly DR exercises, failing over Aurora/RDS and EKS within 8-hour RTO/RPO targets",
     ],
-    stack: ["AWS EKS", "Aurora/RDS", "Lambda", "Terraform", "Datadog", "Python", "Transit Gateway"],
+    stack: ["AWS EKS", "Aurora/RDS", "Lambda", "Terraform", "Datadog", "Dynatrace", "Splunk", "Python"],
     github: null,
     paper: false,
   },
@@ -338,7 +338,7 @@ export const experience = [
       challenge:
         "For DevDash: build a self-service approval-gated platform so developers can trigger infrastructure operations without direct production access. For AWS: reclaim $200K+/month in cloud spend without disrupting live PCI workloads while holding 99.9999% uptime under 24×7 on-call.",
       solution:
-        "DevDash: TypeScript/Node.js platform where developer form submissions trigger Slack webhooks → SRE approves → Lambda executes (SQS fetch → zip → S3 → signed URL to dev's Slack), covering queue reads, vault secrets, and PagerDuty paging. AWS platform: Python rightsizing engine targeting all three waste categories cut $200K+/month; Datadog SLO tracking held <0.01% error rates; quarterly DR exercises failed over Aurora and EKS within 8-hour RTO.",
+        "DevDash: TypeScript/Node.js platform where developer form submissions trigger Slack webhooks → SRE approves → Lambda executes (SQS fetch → zip → S3 → signed URL to dev's Slack), covering queue reads, vault secrets, and PagerDuty paging. AWS platform: Python rightsizing engine targeting all three waste categories cut $200K+/month; 24×7 on-call using Datadog, Dynatrace, and Splunk for incident detection and triage held <0.01% error rates; quarterly DR exercises failed over Aurora and EKS within 8-hour RTO.",
     },
     highlights: [
       "DevDash SQS workflow: developer submits queue name → Slack webhook → SRE approval → Lambda fetches contents, zips, stores in S3, returns signed URL to dev's Slack DM",
@@ -347,10 +347,10 @@ export const experience = [
       "Built TypeScript/Node.js REST API backend for DevDash, used by 50–100 engineers",
       "Operated shared AWS platform services across 6 PCI-supporting production accounts at 99.9999% uptime: EKS, RDS/Aurora (PostgreSQL), IAM, S3, Lambda, and multi-account VPC networking (Transit Gateway, peering)",
       "Improved cost and capacity with Python-driven rightsizing and autoscaling, cutting cloud spend by $200K+/month",
-      "Led 24×7 on-call, holding a <0.01% error-rate SLO across services and APIs in Datadog; cut MTTD 50% and MTTR 35%",
+      "Led 24×7 on-call using Datadog, Dynatrace, and Splunk for incident detection and triage; held <0.01% error-rate SLO across all services; cut MTTD 50% and MTTR 35%",
       "Planned and ran quarterly DR exercises, failing over Aurora/RDS and EKS within 8-hour RTO/RPO targets",
     ],
-    stack: ["TypeScript", "Node.js", "AWS EKS", "Aurora/RDS", "Terraform", "Datadog", "Python"],
+    stack: ["TypeScript", "Node.js", "AWS EKS", "Aurora/RDS", "Terraform", "Datadog", "Dynatrace", "Splunk", "Python"],
     projectRef: ["devdash", "aws-platform"],
   },
   {
