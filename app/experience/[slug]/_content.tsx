@@ -2,7 +2,7 @@
 
 import { notFound } from "next/navigation";
 import Link from "next/link";
-import { experience } from "@/lib/data";
+import { experience, projects } from "@/lib/data";
 
 const accentColors: Record<string, string> = {
   geotab: "#0099ff",
@@ -127,7 +127,7 @@ export default function ExperienceContent({ slug }: { slug: string }) {
           </ul>
         </div>
 
-        <div className="mb-4">
+        <div className="mb-6">
           <p className="font-mono text-xs tracking-widest uppercase mb-3" style={{ color: "#1a3a5a" }}>
             EQUIPMENT MANIFEST
           </p>
@@ -139,6 +139,56 @@ export default function ExperienceContent({ slug }: { slug: string }) {
             ))}
           </div>
         </div>
+
+        {/* Related project case studies */}
+        {job.projectRef && (() => {
+          const refs = Array.isArray(job.projectRef) ? job.projectRef : [job.projectRef];
+          const linked = refs.map((pid) => projects.find((p) => p.id === pid)).filter(Boolean);
+          if (!linked.length) return null;
+          return (
+            <div className="pt-6" style={{ borderTop: "1px solid #0c2040" }}>
+              <p className="font-mono text-xs tracking-widest uppercase mb-4" style={{ color: "#1a3a5a" }}>
+                RELATED OPERATIONS
+              </p>
+              <div className="flex flex-col gap-3">
+                {linked.map((proj) => proj && (
+                  <Link
+                    key={proj.id}
+                    href={`/projects/${proj.id}`}
+                    className="relative flex items-center justify-between p-4 border transition-all duration-150 group"
+                    style={{ backgroundColor: "#040c18", borderColor: proj.badgeColor + "33", textDecoration: "none" }}
+                    onMouseEnter={(e) => {
+                      e.currentTarget.style.borderColor = proj.badgeColor + "77";
+                      e.currentTarget.style.boxShadow = `0 0 14px ${proj.badgeColor}0f`;
+                    }}
+                    onMouseLeave={(e) => {
+                      e.currentTarget.style.borderColor = proj.badgeColor + "33";
+                      e.currentTarget.style.boxShadow = "none";
+                    }}
+                  >
+                    <div>
+                      <p className="font-mono text-xs mb-1" style={{ color: proj.badgeColor }}>
+                        {proj.badge}
+                      </p>
+                      <p
+                        className="font-bold uppercase tracking-wide"
+                        style={{ fontFamily: "var(--font-rajdhani)", fontSize: "1rem", color: "#c0d8f4" }}
+                      >
+                        {proj.title}
+                      </p>
+                      <p className="font-mono text-xs mt-0.5" style={{ color: "#2a4a6a" }}>
+                        {proj.subtitle}
+                      </p>
+                    </div>
+                    <span className="font-mono text-xs tracking-widest ml-4 flex-shrink-0" style={{ color: proj.badgeColor }}>
+                      VIEW ↗
+                    </span>
+                  </Link>
+                ))}
+              </div>
+            </div>
+          );
+        })()}
       </div>
     </div>
   );

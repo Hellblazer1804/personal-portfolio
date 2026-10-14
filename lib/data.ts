@@ -184,6 +184,37 @@ export const projects = [
     paper: false,
   },
   {
+    id: "ncr-apigee",
+    title: "API Modernization & FedRAMP",
+    subtitle: "gRPC migration, Apigee X gateway, and FedRAMP compliance at NCR",
+    badge: "FedRAMP · 30% Perf Gain",
+    badgeColor: "#06b6d4",
+    caseStudy: {
+      situation:
+        "NCR's backend services handled 10K+ req/min through an aging REST-only API layer on GKE. High-frequency service-to-service calls had throughput bottlenecks, the gateway infrastructure needed modernizing, and the platform required FedRAMP compliance to support government contracts.",
+      challenge:
+        "Migrate 20-30 REST APIs to a new gateway platform without disrupting live traffic, improve throughput on critical high-frequency paths, and achieve FedRAMP compliance - all while maintaining on-call availability for the services throughout the transition.",
+      solution:
+        "Adopted gRPC for high-frequency service-to-service paths, cutting REST payload overhead and improving overall performance 30%. Migrated 20-30 APIs to Apigee X on GCP as the unified gateway layer. Profiled and load-tested to target the highest-impact bottlenecks first. Implemented FedRAMP compliance controls across the microservices platform.",
+    },
+    metrics: [
+      { value: "30%", label: "Performance improvement" },
+      { value: "20–30", label: "APIs migrated to Apigee X" },
+      { value: "10K+", label: "Requests per minute" },
+      { value: "FedRAMP", label: "Compliance achieved" },
+    ],
+    highlights: [
+      "Adopted gRPC for high-frequency service-to-service paths - reduced REST payload overhead and improved throughput 30%",
+      "Migrated 20-30 REST APIs to Apigee X on GCP as the unified gateway layer without service disruption",
+      "Implemented FedRAMP compliance controls across the microservices platform for government contract eligibility",
+      "Profiled and load-tested bottlenecks to prioritize the highest-impact migration targets",
+      "Owned on-call availability throughout the migration, triaging failures and restoring service via pod-level remediation",
+    ],
+    stack: ["Java", "Spring Boot", "GKE", "gRPC", "Apigee X", "PostgreSQL", "FedRAMP", "GCP"],
+    github: null,
+    paper: false,
+  },
+  {
     id: "devdash",
     title: "DevDash",
     subtitle: "Developer Self-Service Platform at American Express",
@@ -269,6 +300,7 @@ export const experience = [
       "Handling DR on-call for the Argo and automated task platforms (GKE node failovers, VM backups, OSR image updates); executed region failovers during a data center power outage, recovering in ~1 hour",
     ],
     stack: ["Python", "GKE", "Argo Workflows", "Terraform", "Prometheus", "BigQuery", "MCP"],
+    projectRef: "multi-agent",
   },
   {
     company: "University of Georgia",
@@ -292,6 +324,7 @@ export const experience = [
       "Raised workflow success from 39% (naive spot) to 89.03% at $0.018 per run - under half the best baseline's cost, 2.3× lower latency",
     ],
     stack: ["Python", "Kubernetes (kubeadm)", "Fission", "MySQL", "AWS Spot", "Prometheus"],
+    projectRef: "faaspot",
   },
   {
     company: "American Express",
@@ -318,6 +351,7 @@ export const experience = [
       "Planned and ran quarterly DR exercises, failing over Aurora/RDS and EKS within 8-hour RTO/RPO targets",
     ],
     stack: ["TypeScript", "Node.js", "AWS EKS", "Aurora/RDS", "Terraform", "Datadog", "Python"],
+    projectRef: ["devdash", "aws-platform"],
   },
   {
     company: "NCR Corporation",
@@ -335,10 +369,12 @@ export const experience = [
     },
     highlights: [
       "Built multi-threaded Java Spring Boot microservices and REST APIs on GKE at 10K+ req/min on PostgreSQL with RBAC",
-      "Owned on-call availability for these microservices, triaging failures and bouncing GKE pods to restore service",
-      "Profiled and load-tested bottlenecks; adopted gRPC while migrating 20–30 APIs to Apigee X, improving performance 30%",
+      "Adopted gRPC for high-frequency paths and migrated 20-30 REST APIs to Apigee X, improving performance 30%",
+      "Implemented FedRAMP compliance controls across the microservices platform for government contract eligibility",
+      "Owned on-call availability throughout the migration, triaging failures and restoring service via pod-level remediation",
     ],
-    stack: ["Java", "Spring Boot", "GKE", "PostgreSQL", "gRPC", "Apigee X"],
+    stack: ["Java", "Spring Boot", "GKE", "gRPC", "Apigee X", "PostgreSQL", "FedRAMP"],
+    projectRef: "ncr-apigee",
   },
 ];
 

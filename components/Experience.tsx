@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { experience } from "@/lib/data";
+import { experience, projects } from "@/lib/data";
 
 const accentColors = ["#0099ff", "#00aa44", "#6655ff", "#ee8800"];
 
@@ -138,27 +138,56 @@ export default function Experience() {
                     </div>
                   </div>
 
-                  {/* Case Study button */}
-                  <Link
-                    href={`/experience/${job.slug}`}
-                    className="self-center font-mono text-xs tracking-widest uppercase px-5 py-2.5 border transition-all duration-150 flex-shrink-0"
-                    style={{
-                      color,
-                      borderColor: color + "44",
-                      backgroundColor: color + "08",
-                      textDecoration: "none",
-                    }}
-                    onMouseEnter={(e) => {
-                      e.currentTarget.style.backgroundColor = color + "18";
-                      e.currentTarget.style.boxShadow = `0 0 12px ${color}22`;
-                    }}
-                    onMouseLeave={(e) => {
-                      e.currentTarget.style.backgroundColor = color + "08";
-                      e.currentTarget.style.boxShadow = "none";
-                    }}
-                  >
-                    CASE STUDY ↗
-                  </Link>
+                  {/* Buttons */}
+                  <div className="self-center flex flex-col gap-2 flex-shrink-0">
+                    <Link
+                      href={`/experience/${job.slug}`}
+                      className="font-mono text-xs tracking-widest uppercase px-5 py-2.5 border transition-all duration-150 text-center"
+                      style={{
+                        color,
+                        borderColor: color + "44",
+                        backgroundColor: color + "08",
+                        textDecoration: "none",
+                      }}
+                      onMouseEnter={(e) => {
+                        e.currentTarget.style.backgroundColor = color + "18";
+                        e.currentTarget.style.boxShadow = `0 0 12px ${color}22`;
+                      }}
+                      onMouseLeave={(e) => {
+                        e.currentTarget.style.backgroundColor = color + "08";
+                        e.currentTarget.style.boxShadow = "none";
+                      }}
+                    >
+                      CASE STUDY ↗
+                    </Link>
+                    {job.projectRef && (() => {
+                      const refs = Array.isArray(job.projectRef) ? job.projectRef : [job.projectRef];
+                      return refs.map((pid) => {
+                        const proj = projects.find((p) => p.id === pid);
+                        if (!proj) return null;
+                        return (
+                          <Link
+                            key={pid}
+                            href={`/projects/${pid}`}
+                            className="font-mono text-xs tracking-widest uppercase px-5 py-2.5 border transition-all duration-150 text-center"
+                            style={{
+                              color: proj.badgeColor,
+                              borderColor: proj.badgeColor + "33",
+                              backgroundColor: proj.badgeColor + "06",
+                              textDecoration: "none",
+                            }}
+                            onMouseEnter={(e) => {
+                              e.currentTarget.style.backgroundColor = proj.badgeColor + "14";
+                            }}
+                            onMouseLeave={(e) => {
+                              e.currentTarget.style.backgroundColor = proj.badgeColor + "06";
+                            }}
+                          >
+                            {proj.title.length > 16 ? proj.title.split(" ")[0].toUpperCase() + " ↗" : proj.title.toUpperCase() + " ↗"}
+                          </Link>
+                        );
+                      });
+                    })()}</div>
                 </div>
               </div>
             );

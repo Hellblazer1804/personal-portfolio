@@ -8,8 +8,8 @@ import { personal } from "@/lib/data";
 const links = [
   { label: "HOME", href: "/" },
   { label: "PROFILE", href: "/about" },
-  { label: "OPERATIONS", href: "/projects" },
   { label: "HISTORY", href: "/experience" },
+  { label: "OPERATIONS", href: "/projects" },
   { label: "ARCHIVE", href: "/photography" },
   { label: "CONTACT", href: "/contact" },
 ];
