@@ -144,9 +144,22 @@ export default function ProjectContent({ id }: { id: string }) {
               GITHUB ↗
             </a>
           )}
+          {"thesis" in project && project.thesis && (
+            <a
+              href={project.thesis as string}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="font-mono text-xs tracking-widest uppercase transition-colors duration-150"
+              style={{ color: "#00aa44", textDecoration: "none" }}
+              onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.7")}
+              onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
+            >
+              M.S. THESIS (PROQUEST) ↗
+            </a>
+          )}
           {project.paper && (
             <span className="font-mono text-xs tracking-wider" style={{ color: "#1a3a5a" }}>
-              DOI: 10.1145/3801927.3858633
+              PAPER: ACM MIDDLEWARE &apos;26 · DOI: 10.1145/3801927.3858633
             </span>
           )}
         </div>

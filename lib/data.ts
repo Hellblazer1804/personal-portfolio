@@ -121,6 +121,7 @@ export const projects = [
     stack: ["Python", "Kubernetes (kubeadm)", "Fission", "MySQL", "Prometheus", "AWS Spot"],
     github: "https://github.com/Hellblazer1804/faas-spot",
     paper: true,
+    thesis: "https://www.proquest.com/dissertations-theses/fault-tolerant-cost-efficient-serverless-workflow/docview/3382275335/se-2?accountid=14537",
   },
   {
     id: "multi-agent",

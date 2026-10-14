@@ -90,6 +90,20 @@ export default function Projects() {
                         PEER-REVIEWED
                       </span>
                     )}
+                    {"thesis" in project && project.thesis && (
+                      <a
+                        href={project.thesis as string}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        onClick={(e) => e.stopPropagation()}
+                        className="font-mono text-xs px-2 py-0.5 border transition-opacity duration-150"
+                        style={{ color: "#00aa44", borderColor: "#00aa4444", backgroundColor: "#00aa4408", textDecoration: "none" }}
+                        onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.75")}
+                        onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
+                      >
+                        M.S. THESIS ↗
+                      </a>
+                    )}
                   </div>
 
                   {/* Title */}
