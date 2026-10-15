@@ -49,7 +49,7 @@ export default function Contact() {
 
           <p className="font-mono text-sm max-w-xl mx-auto mb-10 leading-relaxed" style={{ color: "var(--text-dim)" }}>
             Platform engineer, backend engineer, systems researcher.
-            If you&apos;re working on hard infrastructure or reliability problems - let&apos;s talk.
+            If you&apos;re working on hard infrastructure or reliability problems — let&apos;s talk.
           </p>
 
           <a

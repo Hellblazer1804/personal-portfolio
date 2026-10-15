@@ -25,7 +25,7 @@ const rajdhani = Rajdhani({
 export const metadata: Metadata = {
   title: "Bandhan Patel - Platform, Backend & Full-Stack Engineer",
   description:
-    "Software engineer with 4+ years across platform infrastructure, backend services, and full-stack development on Kubernetes (AWS & GCP). ACM Middleware '26 author. 99.9999% uptime on 24x7 on-call.",
+    "Platform, Backend & Full-Stack Engineer with 4+ years across infrastructure, backend services, and full-stack development on Kubernetes (AWS & GCP). ACM Middleware '26 author. 99.9999% uptime on 24×7 on-call.",
   keywords: [
     "Platform Engineer",
     "Backend Engineer",

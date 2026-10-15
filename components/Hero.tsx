@@ -60,7 +60,7 @@ function SubjectPhoto() {
       >
         <Brackets color="#0077ee66" />
 
-        {/* Photo - reveals in grayscale during scan, pops to color on done */}
+        {/* Photo — reveals in grayscale during scan, pops to color on done */}
         <img
           src={photoUrl("/photos/personal-photo.jpg")}
           alt={personal.name}
@@ -84,7 +84,7 @@ function SubjectPhoto() {
           }}
         />
 
-        {/* Blue overlay - fades out when color is revealed */}
+        {/* Blue overlay — fades out when color is revealed */}
         <div
           className="absolute inset-0 pointer-events-none"
           style={{
@@ -141,7 +141,7 @@ function SubjectPhoto() {
         className="absolute -top-5 left-0 font-mono text-xs"
         style={{ color: "var(--text-dimmer)" }}
       >
-        00°N 00°W
+        33.75°N 84.39°W
       </span>
       <span
         className="absolute -bottom-5 right-0 font-mono text-xs"
@@ -177,7 +177,7 @@ export default function Hero() {
 
         {/* Two-column layout */}
         <div className="flex flex-col lg:flex-row items-start gap-12 lg:gap-16">
-          {/* Left - text */}
+          {/* Left — text */}
           <div className="flex-1 min-w-0">
             <h1
               className="font-bold uppercase tracking-tight mb-5 leading-none"
@@ -308,7 +308,7 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* Right - photo (top on mobile, right column on desktop) */}
+          {/* Right — photo (top on mobile, right column on desktop) */}
           <div className="lg:w-[280px] w-full flex justify-center lg:justify-end lg:pt-2 flex-shrink-0 order-first lg:order-last">
             <SubjectPhoto />
           </div>
