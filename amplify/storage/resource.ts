@@ -1,9 +1,3 @@
-import { defineStorage } from "@aws-amplify/backend";
-
-export const storage = defineStorage({
-  name: "portfolioAssets",
-  access: (allow) => ({
-    // All photos publicly readable — no auth required
-    "photos/*": [allow.guest.to(["read"])],
-  }),
-});
+// Storage resource intentionally not used.
+// Amplify Hosting automatically serves public/photos/ via CloudFront CDN —
+// no separate S3 bucket or Auth configuration is needed for a public portfolio.

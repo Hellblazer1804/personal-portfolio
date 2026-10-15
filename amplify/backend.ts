@@ -1,6 +1,6 @@
 import { defineBackend } from "@aws-amplify/backend";
-import { storage } from "./storage/resource.js";
 
-export const backend = defineBackend({
-  storage,
-});
+// Empty backend — no storage resource needed.
+// Photos in public/photos/ are already served via CloudFront
+// through Amplify Hosting's built-in CDN.
+export const backend = defineBackend({});
