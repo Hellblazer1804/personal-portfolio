@@ -29,8 +29,8 @@ export default function Contact() {
           className="relative p-12 md:p-16 text-center"
           style={{
             backgroundColor: "var(--surface)",
-            border: "1px solid #0c2040",
-            background: "radial-gradient(ellipse at 50% 0%, rgba(0, 100, 220, 0.06) 0%, #040c18 70%), #040c18",
+            border: "1px solid var(--border)",
+            background: "radial-gradient(ellipse at 50% 0%, rgba(0, 100, 220, 0.06) 0%, var(--surface) 70%), var(--surface)",
           }}
         >
           <Brackets />

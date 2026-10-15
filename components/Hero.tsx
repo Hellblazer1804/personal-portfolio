@@ -122,7 +122,7 @@ function SubjectPhoto() {
         <div
           className="absolute bottom-0 left-0 right-0 px-3 py-2.5"
           style={{
-            background: "linear-gradient(transparent, rgba(1,2,8,0.9))",
+            background: "linear-gradient(transparent, var(--surface))",
             opacity: phase === "done" ? 1 : 0,
             transition: "opacity 0.5s ease 0.2s",
           }}
