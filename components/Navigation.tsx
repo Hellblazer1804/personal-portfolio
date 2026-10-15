@@ -154,6 +154,14 @@ export default function Navigation() {
               </Link>
             );
           })}
+          <div className="h-px mt-1" style={{ backgroundColor: "var(--border)" }} />
+          <button
+            onClick={() => { toggle(); setMenuOpen(false); }}
+            className="font-mono text-xs tracking-widest py-2 text-left transition-colors duration-150"
+            style={{ color: "var(--accent)", background: "none", border: "none", cursor: "pointer", padding: "8px 0" }}
+          >
+            {isDark ? "◑ SWITCH TO LIGHT MODE" : "◐ SWITCH TO DARK MODE"}
+          </button>
         </div>
       )}
     </nav>
