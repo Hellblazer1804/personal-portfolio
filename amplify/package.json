@@ -1,4 +1,5 @@
 {
+  "type": "module",
   "dependencies": {
     "@aws-amplify/backend": "^1.0.0",
     "@aws-amplify/backend-cli": "^1.0.0",
