@@ -48,8 +48,8 @@ export default function Contact() {
           </h2>
 
           <p className="font-mono text-sm max-w-xl mx-auto mb-10 leading-relaxed" style={{ color: "#2a4a6a" }}>
-            Open to senior Platform Engineer, Backend Engineer, Full-Stack Engineer, and SRE roles.
-            If you&apos;re working on hard systems, backend, or infrastructure problems - initiate contact.
+            Platform engineer, backend engineer, systems researcher.
+            If you&apos;re working on hard infrastructure or reliability problems - let&apos;s talk.
           </p>
 
           <a

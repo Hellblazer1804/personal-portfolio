@@ -20,7 +20,7 @@ export const aboutText = `I'm a software engineer with 4+ years across platform 
 
 On the backend side, I've built TypeScript/Node.js and Java Spring Boot services at scale - from developer tooling platforms to high-throughput microservices handling 10K+ req/min. On the research side, my M.S. thesis became a peer-reviewed paper at ACM Middleware '26: FaaSpot runs serverless DAG workflows entirely on spot instances with no on-demand fallback, beating every hybrid baseline on success rate, cost, and latency.
 
-I'm open to senior Platform Engineer, SRE, Backend Engineer, and Full-Stack Engineer roles - especially work that sits at the intersection of systems depth and real-world reliability: platform tooling, cost optimization, backend infrastructure, and the kind of on-call work where the decisions you make at 2 a.m. actually matter.`;
+I'm drawn to work at the intersection of systems depth and real-world reliability: platform tooling, cost optimization, backend infrastructure, and the kind of on-call work where the decisions you make at 2 a.m. actually matter.`;
 
 export const skills = [
   {
