@@ -283,10 +283,10 @@ export const experience = [
       challenge:
         "Modernize the platform to Python and Argo Workflows on GKE while simultaneously shipping a production AI observability system and maintaining DR coverage for the live platform - including real incidents.",
       solution:
-        "Rewrote the task platform in Python with native Argo Workflows support (−30% failure rate), built the multi-agent AI ops system with Claude Code and MCP servers (MTTD −40%, MTTR −30%), and delivered Terraform-driven GKE provisioning that cut deployment time 80%+. During a GCE AZ power outage, detected the failure, pulled the affected VM list, and ran our automated failover script to restore customer VMs - recovered in ~1 hour.",
+        "Developed new features and unit tests for the PowerShell-based task platform (−30% failure rate), built the multi-agent AI ops system with Claude Code and MCP servers (MTTD −40%, MTTR −30%), and delivered Terraform-driven GKE provisioning that cut deployment time 80%+. During a GCE AZ power outage, detected the failure, pulled the affected VM list, and ran our automated failover script to restore customer VMs - recovered in ~1 hour.",
     },
     highlights: [
-      "Migrating the PowerShell-based automated task platform to Python for native Argo Workflows support; reduced task failure rates by 30%",
+      "Developed new features and unit tests for the PowerShell-based automated task platform, improving reliability and reducing task failure rates by 30%",
       "Built a production multi-agent AI system as a Claude Code skill - orchestrator runs agents concurrently against Prometheus, BigQuery, and gcloud APIs through MCP servers; cut MTTD 40%, MTTR 30%",
       "Leading the migration of VM workloads to Kubernetes-native Argo Workflows on GKE across a multi-region architecture; Terraform modules in CI/CD cut provisioning time by 80%+",
       "Handling DR on-call for the Argo and automated task platforms (GKE node failovers, VM backups, OSR image updates); executed region failovers during a data center power outage, recovering in ~1 hour",
