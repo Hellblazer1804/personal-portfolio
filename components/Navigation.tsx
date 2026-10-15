@@ -11,6 +11,7 @@ const links = [
   { label: "HISTORY", href: "/experience" },
   { label: "OPERATIONS", href: "/projects" },
   { label: "ARCHIVE", href: "/photography" },
+  { label: "PLATFORM", href: "/platform" },
   { label: "CONTACT", href: "/contact" },
 ];
 
