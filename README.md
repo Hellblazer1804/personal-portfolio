@@ -1,151 +1,123 @@
-# Bandhan Patel — Portfolio
+# bandhanpatel.dev — Portfolio
 
-Personal portfolio and photography archive. Built with Next.js 16 App Router, styled with a custom Abstergo-inspired dark UI (electric blue accents, dot grid, scan lines, Rajdhani headings, corner bracket cards).
+> Platform · Backend · Full-Stack Engineer
 
-Live at: **[bandhanpatel.dev]** · Deployed on AWS Amplify
+Personal portfolio and photography archive built as a working demonstration of platform engineering: IaC-provisioned CDN, CI/CD-automated deployments, and a Next.js SSR app wired together on AWS.
+
+**Live site**: [bandhanpatel.dev](https://bandhanpatel.dev)
 
 ---
 
-## Pages
+## Architecture
 
-| Route | Description |
-| --- | --- |
-| `/` | Hero landing — name, title, stats |
-| `/about` | Subject profile — bio, education, certs, tech stack |
-| `/projects` | Operations log — project list linking to case studies |
-| `/projects/[id]` | Full case study: Situation / Challenge / Solution + metrics |
-| `/experience` | Operative history — work timeline |
-| `/experience/[slug]` | Full experience case study |
-| `/photography` | Visual archive — 15 photos with 3D flip-card stories |
-| `/contact` | Contact page |
+```text
+┌──────────────────────────────────────────────────────────────────┐
+│  GitHub (main)                                                   │
+│    └─▶  AWS Amplify CI/CD                                        │
+│           ├─  npm ci + npm run build  (Next.js 16 / Turbopack)   │
+│           └─▶  Amplify Hosting  ──▶  CloudFront (app CDN)        │
+└──────────────────────────────────────────────────────────────────┘
+
+┌──────────────────────────────────────────────────────────────────┐
+│  Terraform (separate, run locally)                               │
+│    ├─  S3 bucket  (private, public access blocked)               │
+│    ├─  CloudFront OAC  (sigv4, replaces legacy OAI)              │
+│    └─▶  CloudFront CDN  ──▶  photos served at immutable TTL      │
+│                                                                  │
+│  NEXT_PUBLIC_PHOTO_CDN_URL env var injected at Amplify build     │
+└──────────────────────────────────────────────────────────────────┘
+```
+
+**Key infrastructure decisions:**
+
+- S3 bucket is private — only the CloudFront distribution can read it, scoped by `AWS:SourceArn` in the bucket policy
+- CloudFront cache policy: `max-age=31536000, immutable` for photos; Amplify Hosting handles the app TTL
+- `amplify.yml` contains the full build spec — the repo is the source of truth for how the site deploys
 
 ---
 
 ## Stack
 
-- **Framework** — Next.js 16 (App Router, Turbopack)
-- **Language** — TypeScript
-- **Styling** — Tailwind CSS v4, inline styles for design system tokens
-- **Fonts** — Rajdhani (headings), Geist Sans (body), Geist Mono (labels)
-- **Animations** — CSS 3D transforms (flip cards), Framer Motion (available)
-- **Type animation** — `react-type-animation`
-- **Deployment** — AWS Amplify
+| Layer | Technology |
+| --- | --- |
+| Framework | Next.js 16 — App Router, TypeScript strict mode |
+| Styling | Tailwind CSS v4, inline CSS custom properties for theming |
+| Fonts | Rajdhani (headings), Geist Sans/Mono (body/labels) |
+| Hosting | AWS Amplify — auto-deploy on push to `main` |
+| Photo CDN | S3 + CloudFront via Terraform |
+| IaC | Terraform (`terraform/`) |
+| Build spec | `amplify.yml` |
 
 ---
 
-## Project Structure
+## Project structure
 
 ```text
-app/
-  page.tsx                  # Hero (/)
-  about/page.tsx            # Profile (/about)
-  projects/
-    page.tsx                # Projects list (/projects)
-    [id]/page.tsx           # Case study (/projects/[id])
-  experience/
-    page.tsx                # Timeline (/experience)
-    [slug]/page.tsx         # Case study (/experience/[slug])
-  photography/page.tsx      # Photo gallery (/photography)
-  contact/page.tsx          # Contact (/contact)
-  layout.tsx                # Root layout — Navigation + Footer
-  globals.css               # Design system: colors, scan lines, dot grid
+app/                  Next.js App Router pages
+  page.tsx            Hero (/)
+  about/              Profile + tech stack
+  projects/           Operations log + [id] case studies
+  experience/         Work history + [slug] case studies
+  photography/        Flip-card photo archive with lightbox
+  platform/           This site's own infrastructure — the meta page
+  contact/
 
-components/
-  Navigation.tsx            # Top nav with active-route highlighting
-  Hero.tsx                  # Landing section with TypeAnimation
-  About.tsx                 # Bio, education, certs, callouts
-  Stack.tsx                 # Tech skill groups
-  Projects.tsx              # Project card list
-  Experience.tsx            # Work history with expandable highlights
-  Contact.tsx               # Contact CTA
-  Photography.tsx           # Flip-card photo gallery
-  Footer.tsx                # Status bar footer
-
+components/           All UI components
 lib/
-  data.ts                   # All content: personal info, projects,
-                            # experience, education, certs, photos
+  data.ts             Single source of truth for all content
+  photo-url.ts        Resolves photo paths to CDN URL in production
+  theme.ts            Dark/light mode token definitions
 
-public/
-  photos/                   # Web-ready JPEGs (DNG originals excluded via .gitignore)
+terraform/            S3 + CloudFront for photo CDN
+  main.tf
+  variables.tf
+  outputs.tf
+
+scripts/
+  upload-photos.sh    Sync photos to S3 + invalidate CloudFront cache
+
+amplify/              Amplify Gen 2 backend config (empty backend)
+amplify.yml           Amplify build spec
 ```
 
 ---
 
-## Content
+## Adding content
 
-All content lives in [`lib/data.ts`](lib/data.ts). No CMS — edit the arrays directly.
+All content lives in [`lib/data.ts`](lib/data.ts) — no CMS. Edit the arrays directly:
 
-### Adding a project
+- `projects[]` — project case studies with `{ situation, challenge, solution }` + metrics
+- `experience[]` — work history with `projectRef` linking to related projects
+- `photos[]` — photography archive with stories
 
-```ts
-// lib/data.ts → projects[]
-{
-  id: "my-project",           // used in /projects/[id] URL
-  title: "Project Name",
-  subtitle: "One-liner description",
-  badge: "Label",
-  badgeColor: "#0099ff",
-  caseStudy: {
-    situation: "...",
-    challenge: "...",
-    solution: "...",
-  },
-  metrics: [
-    { value: "99%", label: "Uptime" },
-  ],
-  highlights: ["..."],
-  stack: ["TypeScript", "Kubernetes"],
-  github: "https://github.com/...",  // or null
-  paper: false,
-}
-```
-
-### Adding an experience entry
-
-```ts
-// lib/data.ts → experience[]
-{
-  company: "Company Name",
-  slug: "company-name",       // used in /experience/[slug] URL
-  role: "Your Role",
-  period: "Jan 2024 – Present",
-  location: "City, ST",
-  caseStudy: { situation, challenge, solution },
-  highlights: ["..."],
-  stack: ["Python", "GKE"],
-}
-```
-
-### Adding a photo
-
-1. Drop the JPEG into `public/photos/`
-2. Add an entry to `photos[]` in `lib/data.ts`:
-
-```ts
-{
-  id: "photo-id",
-  src: "/photos/filename.jpg",
-  title: "Title",
-  location: "Place, State",
-  date: "Month Year",
-  story: "The story behind this photo...",
-  tags: ["tag1", "tag2"],
-}
-```
-
-**iPhone ProRAW (DNG) → JPEG conversion:**
+### iPhone ProRAW → JPEG
 
 ```bash
-# Single file via QuickLook (preserves ProRAW processing)
+# Via QuickLook (preserves ProRAW processing)
 qlmanage -t -s 4032 -f 1 -o /tmp/ photo.DNG
-sips -s format jpeg -s formatOptions 95 /tmp/photo.DNG.png --out photo.jpg
-
-# Or: open in Preview.app → File → Export as JPEG (same pipeline)
-
-# Avoid: sips directly on DNG — flat colors, incorrect tone mapping
+sips -s format jpeg -s formatOptions 95 /tmp/photo.DNG.png --out public/photos/photo.jpg
 ```
 
-DNG originals are excluded from git (see `.gitignore`). Only JPEGs are committed.
+### Photo CDN workflow
+
+```bash
+cd terraform && terraform init && terraform apply
+./scripts/upload-photos.sh $(terraform output -raw bucket_name) \
+                            $(terraform output -raw cloudfront_distribution_id)
+# Set NEXT_PUBLIC_PHOTO_CDN_URL=$(terraform output -raw cdn_url) in Amplify env vars
+```
+
+---
+
+## Dark / light mode
+
+CSS custom properties are toggled via `ThemeProvider` using `element.style.setProperty` directly on `document.documentElement`. The approach bypasses Tailwind's `@layer` cascade, which would otherwise win over `[data-theme]` attribute selectors. Preference is persisted in `localStorage`.
+
+---
+
+## Built with Claude Code
+
+This site was built iteratively with [Claude Code](https://claude.ai/code) as an engineering partner — not generated in one shot. The design decisions, content, case studies, and infrastructure choices are mine; Claude Code handled implementation, caught bugs, and suggested approaches. Human-in-the-loop throughout.
 
 ---
 
@@ -153,27 +125,14 @@ DNG originals are excluded from git (see `.gitignore`). Only JPEGs are committed
 
 ```bash
 npm install
-npm run dev       # http://localhost:3000
-npm run build     # production build
-npx tsc --noEmit  # type check
+npm run dev          # http://localhost:3000
+npx tsc --noEmit     # type check
 ```
 
 ---
 
-## Design System
+## License
 
-The Abstergo aesthetic is driven by CSS variables and inline style tokens — no separate theme file. Key values used throughout components:
+**Code** is MIT licensed — see [LICENSE](LICENSE).
 
-| Token | Value | Use |
-| --- | --- | --- |
-| Background | `#010208` | Page bg |
-| Surface | `#040c18` | Card bg |
-| Border | `#0c2040` | Default borders |
-| Border active | `#1a4888` | Hover/focus borders |
-| Blue | `#0077ee` | Primary accent |
-| Blue bright | `#0099ff` | Glow, highlights |
-| Text bright | `#c0d8f4` | Headings |
-| Text base | `#5888aa` | Body copy |
-| Text dim | `#2a4a6a` | Labels, metadata |
-
-Scan lines and dot grid are applied globally via `body::after` and `body` background-image in `globals.css`.
+**Content and photography** (case studies, biographical text, all photos) are © 2026 Bandhan Patel, all rights reserved. They may not be reproduced without permission.

@@ -21,7 +21,6 @@
 /build
 
 # misc
-.DS_Store
 *.pem
 
 # debug
@@ -53,7 +52,20 @@ public/photos/*.ARW
 public/photos/*.arw
 public/photos/*.NEF
 public/photos/*.nef
+# Terraform — state contains resource IDs and can contain secrets
 terraform/.terraform/
 terraform/.terraform.lock.hcl
 terraform/terraform.tfstate
 terraform/terraform.tfstate.backup
+terraform/*.tfstate
+terraform/*.tfstate.*
+terraform/terraform.tfvars
+terraform/*.tfvars
+
+# Amplify generated outputs (may contain resource IDs)
+amplify_outputs.json
+amplify/amplify_outputs.json
+
+# OS
+.DS_Store
+Thumbs.db
