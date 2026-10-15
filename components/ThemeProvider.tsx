@@ -45,6 +45,12 @@ function applyTheme(dark: boolean) {
   const root = document.documentElement;
   Object.entries(vars).forEach(([k, v]) => root.style.setProperty(k, v));
   root.setAttribute("data-theme", dark ? "dark" : "light");
+
+  // Set body background directly — bypasses any Tailwind-generated body rules
+  const dotColor = dark ? "rgba(0,85,180,0.12)" : "rgba(0,70,150,0.07)";
+  document.body.style.backgroundColor = vars["--bg"];
+  document.body.style.backgroundImage = `radial-gradient(circle, ${dotColor} 1px, transparent 1px)`;
+  document.body.style.color = vars["--text-bright"];
 }
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
