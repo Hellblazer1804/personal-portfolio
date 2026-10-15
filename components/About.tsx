@@ -4,7 +4,7 @@ import { aboutText, education, certs, personal } from "@/lib/data";
 
 const callouts = [
   { value: "$200K+/mo", label: "Cloud cost savings at Amex", color: "#00aa44" },
-  { value: "89.03%", label: "FaaSpot spot workflow success rate", color: "#0099ff" },
+  { value: "89.03%", label: "FaaSpot spot workflow success rate", color: "var(--accent-bright)" },
   { value: "6 PCI", label: "Production accounts operated at Amex", color: "#6655ff" },
   { value: "10K+ rpm", label: "Java API throughput at NCR", color: "#ee8800" },
 ];
@@ -26,11 +26,11 @@ export default function About() {
       <div className="max-w-6xl mx-auto">
         {/* Section label */}
         <div className="flex items-center gap-3 mb-3">
-          <span className="font-mono text-xs tracking-widest uppercase" style={{ color: "#0077ee" }}>
+          <span className="font-mono text-xs tracking-widest uppercase" style={{ color: "var(--accent)" }}>
             SUBJECT PROFILE
           </span>
           <span className="flex-1 h-px" style={{ background: "linear-gradient(90deg, #0077ee33, transparent)" }} />
-          <span className="font-mono text-xs" style={{ color: "#1a3a5a" }}>01</span>
+          <span className="font-mono text-xs" style={{ color: "var(--text-dimmer)" }}>01</span>
         </div>
 
         <h2
@@ -38,7 +38,7 @@ export default function About() {
           style={{
             fontFamily: "var(--font-rajdhani)",
             fontSize: "clamp(1.8rem, 4vw, 2.8rem)",
-            color: "#c0d8f4",
+            color: "var(--text-bright)",
             textShadow: "0 0 20px rgba(0, 119, 238, 0.2)",
           }}
         >
@@ -50,12 +50,12 @@ export default function About() {
           <div className="lg:col-span-3">
             <div
               className="relative p-6 mb-6"
-              style={{ backgroundColor: "#040c18", border: "1px solid #0c2040" }}
+              style={{ backgroundColor: "var(--surface)", border: "1px solid #0c2040" }}
             >
               <Brackets />
               <div className="space-y-4">
                 {aboutText.split("\n\n").map((para, i) => (
-                  <p key={i} className="leading-relaxed text-sm" style={{ color: "#5888aa" }}>
+                  <p key={i} className="leading-relaxed text-sm" style={{ color: "var(--text)" }}>
                     {para.trim()}
                   </p>
                 ))}
@@ -64,18 +64,18 @@ export default function About() {
 
             {/* Education */}
             <div className="mb-5">
-              <p className="font-mono text-xs tracking-widest uppercase mb-3" style={{ color: "#1a3a5a" }}>
+              <p className="font-mono text-xs tracking-widest uppercase mb-3" style={{ color: "var(--text-dimmer)" }}>
                 ACADEMIC RECORD
               </p>
               <div className="space-y-3">
                 {education.map((e, i) => (
                   <div key={i} className="flex items-start gap-3">
-                    <span className="mt-1.5 w-1 h-1 flex-shrink-0" style={{ backgroundColor: "#0077ee" }} />
+                    <span className="mt-1.5 w-1 h-1 flex-shrink-0" style={{ backgroundColor: "var(--accent)" }} />
                     <div>
-                      <p className="text-sm font-medium" style={{ color: "#c0d8f4" }}>
+                      <p className="text-sm font-medium" style={{ color: "var(--text-bright)" }}>
                         {e.degree} - {e.school}
                       </p>
-                      <p className="text-xs font-mono mt-0.5" style={{ color: "#2a4a6a" }}>
+                      <p className="text-xs font-mono mt-0.5" style={{ color: "var(--text-dim)" }}>
                         {e.year}{e.note && ` · ${e.note}`}
                       </p>
                     </div>
@@ -86,7 +86,7 @@ export default function About() {
 
             {/* Certs */}
             <div>
-              <p className="font-mono text-xs tracking-widest uppercase mb-3" style={{ color: "#1a3a5a" }}>
+              <p className="font-mono text-xs tracking-widest uppercase mb-3" style={{ color: "var(--text-dimmer)" }}>
                 CERTIFICATIONS
               </p>
               <div className="flex flex-wrap gap-2">
@@ -95,8 +95,8 @@ export default function About() {
                     key={i}
                     className="text-xs px-3 py-1.5 font-mono border"
                     style={{
-                      color: c.status === "Active" ? "#00aa44" : "#2a4a6a",
-                      borderColor: c.status === "Active" ? "#00aa4433" : "#0c2040",
+                      color: c.status === "Active" ? "#00aa44" : "var(--text-dim)",
+                      borderColor: c.status === "Active" ? "#00aa4433" : "var(--border)",
                       backgroundColor: c.status === "Active" ? "#00aa4408" : "transparent",
                     }}
                   >
@@ -113,7 +113,7 @@ export default function About() {
               <div
                 key={i}
                 className="relative p-5"
-                style={{ backgroundColor: "#040c18", border: "1px solid #0c2040" }}
+                style={{ backgroundColor: "var(--surface)", border: "1px solid #0c2040" }}
               >
                 <Brackets color={c.color + "44"} />
                 <p
@@ -122,7 +122,7 @@ export default function About() {
                 >
                   {c.value}
                 </p>
-                <p className="text-xs leading-snug" style={{ color: "#2a4a6a" }}>
+                <p className="text-xs leading-snug" style={{ color: "var(--text-dim)" }}>
                   {c.label}
                 </p>
               </div>
@@ -131,9 +131,9 @@ export default function About() {
             {/* Links */}
             <div
               className="col-span-2 p-5"
-              style={{ backgroundColor: "#040c18", border: "1px solid #0c2040" }}
+              style={{ backgroundColor: "var(--surface)", border: "1px solid #0c2040" }}
             >
-              <p className="font-mono text-xs tracking-widest uppercase mb-3" style={{ color: "#1a3a5a" }}>
+              <p className="font-mono text-xs tracking-widest uppercase mb-3" style={{ color: "var(--text-dimmer)" }}>
                 COMMUNICATION CHANNELS
               </p>
               <div className="flex flex-col gap-2">
@@ -148,9 +148,9 @@ export default function About() {
                     target={link.href.startsWith("http") ? "_blank" : undefined}
                     rel={link.href.startsWith("http") ? "noopener noreferrer" : undefined}
                     className="text-sm font-mono transition-colors duration-150"
-                    style={{ color: "#2a4a6a", textDecoration: "none" }}
-                    onMouseEnter={(e) => (e.currentTarget.style.color = "#0099ff")}
-                    onMouseLeave={(e) => (e.currentTarget.style.color = "#2a4a6a")}
+                    style={{ color: "var(--text-dim)", textDecoration: "none" }}
+                    onMouseEnter={(e) => (e.currentTarget.style.color = "var(--accent-bright)")}
+                    onMouseLeave={(e) => (e.currentTarget.style.color = "var(--text-dim)")}
                   >
                     {link.label}
                   </a>

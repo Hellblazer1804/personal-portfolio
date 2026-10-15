@@ -29,11 +29,11 @@ export default function Projects() {
     <section className="py-24 px-6">
       <div className="max-w-6xl mx-auto">
         <div className="flex items-center gap-3 mb-3">
-          <span className="font-mono text-xs tracking-widest uppercase" style={{ color: "#0077ee" }}>
+          <span className="font-mono text-xs tracking-widest uppercase" style={{ color: "var(--accent)" }}>
             OPERATIONS LOG
           </span>
           <span className="flex-1 h-px" style={{ background: "linear-gradient(90deg, #0077ee33, transparent)" }} />
-          <span className="font-mono text-xs" style={{ color: "#1a3a5a" }}>03</span>
+          <span className="font-mono text-xs" style={{ color: "var(--text-dimmer)" }}>03</span>
         </div>
 
         <h2
@@ -41,13 +41,13 @@ export default function Projects() {
           style={{
             fontFamily: "var(--font-rajdhani)",
             fontSize: "clamp(1.8rem, 4vw, 2.8rem)",
-            color: "#c0d8f4",
+            color: "var(--text-bright)",
             textShadow: "0 0 20px rgba(0, 119, 238, 0.2)",
           }}
         >
           Selected Work
         </h2>
-        <p className="font-mono text-sm mb-10" style={{ color: "#2a4a6a" }}>
+        <p className="font-mono text-sm mb-10" style={{ color: "var(--text-dim)" }}>
           From peer-reviewed systems research to production platform engineering at scale.
         </p>
 
@@ -56,13 +56,13 @@ export default function Projects() {
             <div
               key={project.id}
               className="relative p-6 transition-all duration-200"
-              style={{ backgroundColor: "#040c18", border: "1px solid #0c2040" }}
+              style={{ backgroundColor: "var(--surface)", border: "1px solid #0c2040" }}
               onMouseEnter={(e) => {
                 (e.currentTarget as HTMLDivElement).style.borderColor = project.badgeColor + "55";
                 (e.currentTarget as HTMLDivElement).style.boxShadow = `0 0 20px ${project.badgeColor}0a`;
               }}
               onMouseLeave={(e) => {
-                (e.currentTarget as HTMLDivElement).style.borderColor = "#0c2040";
+                (e.currentTarget as HTMLDivElement).style.borderColor = "var(--border)";
                 (e.currentTarget as HTMLDivElement).style.boxShadow = "none";
               }}
             >
@@ -112,12 +112,12 @@ export default function Projects() {
                     style={{
                       fontFamily: "var(--font-rajdhani)",
                       fontSize: "1.25rem",
-                      color: "#c0d8f4",
+                      color: "var(--text-bright)",
                     }}
                   >
                     {project.title}
                   </h3>
-                  <p className="text-sm mb-4" style={{ color: "#2a4a6a" }}>{project.subtitle}</p>
+                  <p className="text-sm mb-4" style={{ color: "var(--text-dim)" }}>{project.subtitle}</p>
 
                   {/* Stack tags */}
                   <div className="flex flex-wrap gap-1.5 items-center">
@@ -128,7 +128,7 @@ export default function Projects() {
                       <span
                         key={j}
                         className="font-mono text-xs px-2 py-0.5 border"
-                        style={{ color: "#1a3a5a", borderColor: "#0c2040", backgroundColor: "#020610" }}
+                        style={{ color: "var(--text-dimmer)", borderColor: "var(--border)", backgroundColor: "var(--bg-deep)" }}
                       >
                         {t}
                       </span>

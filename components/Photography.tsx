@@ -43,10 +43,10 @@ function Lightbox({ photo, onClose }: { photo: Photo; onClose: () => void }) {
         onClick={(e) => e.stopPropagation()}
       >
         {/* Corner brackets */}
-        <span className="absolute -top-1 -left-1 w-5 h-5 border-t-2 border-l-2 z-10" style={{ borderColor: "#0077ee" }} />
-        <span className="absolute -top-1 -right-1 w-5 h-5 border-t-2 border-r-2 z-10" style={{ borderColor: "#0077ee" }} />
-        <span className="absolute -bottom-1 -left-1 w-5 h-5 border-b-2 border-l-2 z-10" style={{ borderColor: "#0077ee" }} />
-        <span className="absolute -bottom-1 -right-1 w-5 h-5 border-b-2 border-r-2 z-10" style={{ borderColor: "#0077ee" }} />
+        <span className="absolute -top-1 -left-1 w-5 h-5 border-t-2 border-l-2 z-10" style={{ borderColor: "var(--accent)" }} />
+        <span className="absolute -top-1 -right-1 w-5 h-5 border-t-2 border-r-2 z-10" style={{ borderColor: "var(--accent)" }} />
+        <span className="absolute -bottom-1 -left-1 w-5 h-5 border-b-2 border-l-2 z-10" style={{ borderColor: "var(--accent)" }} />
+        <span className="absolute -bottom-1 -right-1 w-5 h-5 border-b-2 border-r-2 z-10" style={{ borderColor: "var(--accent)" }} />
 
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
@@ -66,11 +66,11 @@ function Lightbox({ photo, onClose }: { photo: Photo; onClose: () => void }) {
       <div className="relative mt-5 text-center" onClick={(e) => e.stopPropagation()}>
         <p
           className="font-bold uppercase tracking-wide mb-1"
-          style={{ fontFamily: "var(--font-rajdhani)", fontSize: "1.1rem", color: "#c0d8f4" }}
+          style={{ fontFamily: "var(--font-rajdhani)", fontSize: "1.1rem", color: "var(--text-bright)" }}
         >
           {photo.title}
         </p>
-        <p className="font-mono text-xs" style={{ color: "#2a4a6a" }}>
+        <p className="font-mono text-xs" style={{ color: "var(--text-dim)" }}>
           ● {photo.location} · {photo.date}
         </p>
       </div>
@@ -78,7 +78,7 @@ function Lightbox({ photo, onClose }: { photo: Photo; onClose: () => void }) {
       {/* Close hint */}
       <p
         className="absolute bottom-5 font-mono text-xs tracking-widest"
-        style={{ color: "#1a3a5a" }}
+        style={{ color: "var(--text-dimmer)" }}
       >
         CLICK OUTSIDE OR ESC TO CLOSE
       </p>
@@ -141,7 +141,7 @@ function PhotoCard({ photo, onLightbox }: { photo: Photo; onLightbox: (p: Photo)
           <div
             className="absolute top-3 right-3 font-mono text-xs tracking-widest px-2 py-1"
             style={{
-              color: "#0099ff",
+              color: "var(--accent-bright)",
               backgroundColor: "rgba(1,2,8,0.7)",
               border: "1px solid #0077ee44",
             }}
@@ -162,13 +162,13 @@ function PhotoCard({ photo, onLightbox }: { photo: Photo; onLightbox: (p: Photo)
               style={{
                 fontFamily: "var(--font-rajdhani)",
                 fontSize: "1.1rem",
-                color: "#c0d8f4",
+                color: "var(--text-bright)",
                 textShadow: "0 0 12px rgba(0,119,238,0.3)",
               }}
             >
               {photo.title}
             </p>
-            <p className="font-mono text-xs tracking-widest" style={{ color: "#2a4a6a" }}>
+            <p className="font-mono text-xs tracking-widest" style={{ color: "var(--text-dim)" }}>
               ● {photo.location}
             </p>
           </div>
@@ -180,7 +180,7 @@ function PhotoCard({ photo, onLightbox }: { photo: Photo; onLightbox: (p: Photo)
           style={{
             backfaceVisibility: "hidden",
             transform: "rotateY(180deg)",
-            backgroundColor: "#040c18",
+            backgroundColor: "var(--surface)",
             border: "1px solid #0c2040",
           }}
         >
@@ -207,7 +207,7 @@ function PhotoCard({ photo, onLightbox }: { photo: Photo; onLightbox: (p: Photo)
           <div className="relative flex flex-col h-full p-5">
             {/* Header */}
             <div className="mb-4">
-              <p className="font-mono text-xs tracking-widest uppercase mb-1" style={{ color: "#0077ee" }}>
+              <p className="font-mono text-xs tracking-widest uppercase mb-1" style={{ color: "var(--accent)" }}>
                 FIELD RECORD
               </p>
               <p
@@ -215,13 +215,13 @@ function PhotoCard({ photo, onLightbox }: { photo: Photo; onLightbox: (p: Photo)
                 style={{
                   fontFamily: "var(--font-rajdhani)",
                   fontSize: "1.1rem",
-                  color: "#c0d8f4",
+                  color: "var(--text-bright)",
                   textShadow: "0 0 10px rgba(0,119,238,0.25)",
                 }}
               >
                 {photo.title}
               </p>
-              <p className="font-mono text-xs mt-1" style={{ color: "#1a3a5a" }}>
+              <p className="font-mono text-xs mt-1" style={{ color: "var(--text-dimmer)" }}>
                 {photo.location} · {photo.date}
               </p>
             </div>
@@ -232,7 +232,7 @@ function PhotoCard({ photo, onLightbox }: { photo: Photo; onLightbox: (p: Photo)
             {/* Story */}
             <p
               className="text-sm leading-relaxed flex-1 overflow-y-auto"
-              style={{ color: "#5888aa" }}
+              style={{ color: "var(--text)" }}
             >
               {photo.story}
             </p>
@@ -244,7 +244,7 @@ function PhotoCard({ photo, onLightbox }: { photo: Photo; onLightbox: (p: Photo)
                   <span
                     key={tag}
                     className="font-mono text-xs px-2 py-0.5 border"
-                    style={{ color: "#1a3a5a", borderColor: "#0c2040", backgroundColor: "#020610" }}
+                    style={{ color: "var(--text-dimmer)", borderColor: "var(--border)", backgroundColor: "var(--bg-deep)" }}
                   >
                     {tag}
                   </span>
@@ -254,7 +254,7 @@ function PhotoCard({ photo, onLightbox }: { photo: Photo; onLightbox: (p: Photo)
                 <button
                   onClick={(e) => { e.stopPropagation(); onLightbox(photo); }}
                   className="font-mono text-xs tracking-widest transition-opacity duration-150"
-                  style={{ color: "#0099ff", background: "none", border: "none", cursor: "pointer", padding: 0 }}
+                  style={{ color: "var(--accent-bright)", background: "none", border: "none", cursor: "pointer", padding: 0 }}
                   onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.7")}
                   onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
                 >
@@ -263,7 +263,7 @@ function PhotoCard({ photo, onLightbox }: { photo: Photo; onLightbox: (p: Photo)
                 <button
                   onClick={(e) => { e.stopPropagation(); setFlipped(false); }}
                   className="font-mono text-xs tracking-widest transition-colors duration-150"
-                  style={{ color: "#2a4a6a", background: "none", border: "none", cursor: "pointer", padding: 0 }}
+                  style={{ color: "var(--text-dim)", background: "none", border: "none", cursor: "pointer", padding: 0 }}
                 >
                   ↩ CLOSE
                 </button>
@@ -285,11 +285,11 @@ export default function Photography() {
       <div className="max-w-6xl mx-auto">
         {/* Section label */}
         <div className="flex items-center gap-3 mb-3">
-          <span className="font-mono text-xs tracking-widest uppercase" style={{ color: "#0077ee" }}>
+          <span className="font-mono text-xs tracking-widest uppercase" style={{ color: "var(--accent)" }}>
             VISUAL ARCHIVE
           </span>
           <span className="flex-1 h-px" style={{ background: "linear-gradient(90deg, #0077ee33, transparent)" }} />
-          <span className="font-mono text-xs" style={{ color: "#1a3a5a" }}>06</span>
+          <span className="font-mono text-xs" style={{ color: "var(--text-dimmer)" }}>06</span>
         </div>
 
         <h2
@@ -297,13 +297,13 @@ export default function Photography() {
           style={{
             fontFamily: "var(--font-rajdhani)",
             fontSize: "clamp(1.8rem, 4vw, 2.8rem)",
-            color: "#c0d8f4",
+            color: "var(--text-bright)",
             textShadow: "0 0 20px rgba(0,119,238,0.2)",
           }}
         >
           Photography
         </h2>
-        <p className="font-mono text-sm mb-10" style={{ color: "#2a4a6a" }}>
+        <p className="font-mono text-sm mb-10" style={{ color: "var(--text-dim)" }}>
           Click to flip and read the story. Double-click for a full-screen view.
         </p>
 
@@ -313,15 +313,15 @@ export default function Photography() {
           /* Empty state */
           <div
             className="relative p-12 text-center"
-            style={{ backgroundColor: "#040c18", border: "1px solid #0c2040" }}
+            style={{ backgroundColor: "var(--surface)", border: "1px solid #0c2040" }}
           >
             <Brackets />
-            <p className="font-mono text-sm tracking-widest uppercase mb-3" style={{ color: "#1a3a5a" }}>
+            <p className="font-mono text-sm tracking-widest uppercase mb-3" style={{ color: "var(--text-dimmer)" }}>
               NO ASSETS LOADED
             </p>
-            <p className="font-mono text-xs leading-relaxed" style={{ color: "#1a3a5a" }}>
-              Drop JPGs into <span style={{ color: "#0077ee" }}>public/photos/</span> then add entries to{" "}
-              <span style={{ color: "#0077ee" }}>lib/data.ts</span> → <span style={{ color: "#0077ee" }}>photos[]</span>
+            <p className="font-mono text-xs leading-relaxed" style={{ color: "var(--text-dimmer)" }}>
+              Drop JPGs into <span style={{ color: "var(--accent)" }}>public/photos/</span> then add entries to{" "}
+              <span style={{ color: "var(--accent)" }}>lib/data.ts</span> → <span style={{ color: "var(--accent)" }}>photos[]</span>
             </p>
             <p className="font-mono text-xs mt-2" style={{ color: "#0d2030" }}>
               iPhone HEIC → JPG: sips -s format jpeg photo.heic --out photo.jpg

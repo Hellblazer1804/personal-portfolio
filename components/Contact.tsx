@@ -18,17 +18,17 @@ export default function Contact() {
     <section className="py-24 px-6">
       <div className="max-w-6xl mx-auto">
         <div className="flex items-center gap-3 mb-3">
-          <span className="font-mono text-xs tracking-widest uppercase" style={{ color: "#0077ee" }}>
+          <span className="font-mono text-xs tracking-widest uppercase" style={{ color: "var(--accent)" }}>
             COMMUNICATION CHANNEL
           </span>
           <span className="flex-1 h-px" style={{ background: "linear-gradient(90deg, #0077ee33, transparent)" }} />
-          <span className="font-mono text-xs" style={{ color: "#1a3a5a" }}>05</span>
+          <span className="font-mono text-xs" style={{ color: "var(--text-dimmer)" }}>05</span>
         </div>
 
         <div
           className="relative p-12 md:p-16 text-center"
           style={{
-            backgroundColor: "#040c18",
+            backgroundColor: "var(--surface)",
             border: "1px solid #0c2040",
             background: "radial-gradient(ellipse at 50% 0%, rgba(0, 100, 220, 0.06) 0%, #040c18 70%), #040c18",
           }}
@@ -40,14 +40,14 @@ export default function Contact() {
             style={{
               fontFamily: "var(--font-rajdhani)",
               fontSize: "clamp(2rem, 5vw, 4rem)",
-              color: "#c0d8f4",
+              color: "var(--text-bright)",
               textShadow: "0 0 30px rgba(0, 119, 238, 0.3)",
             }}
           >
             Establish Contact.
           </h2>
 
-          <p className="font-mono text-sm max-w-xl mx-auto mb-10 leading-relaxed" style={{ color: "#2a4a6a" }}>
+          <p className="font-mono text-sm max-w-xl mx-auto mb-10 leading-relaxed" style={{ color: "var(--text-dim)" }}>
             Platform engineer, backend engineer, systems researcher.
             If you&apos;re working on hard infrastructure or reliability problems - let&apos;s talk.
           </p>
@@ -56,8 +56,8 @@ export default function Contact() {
             href={`mailto:${personal.email}`}
             className="inline-block font-mono text-sm tracking-widest uppercase px-8 py-3.5 mb-10 transition-all duration-200"
             style={{
-              backgroundColor: "#0077ee",
-              color: "#010208",
+              backgroundColor: "var(--accent)",
+              color: "var(--bg)",
               border: "1px solid #0099ff",
               fontWeight: 600,
               textDecoration: "none",
@@ -67,7 +67,7 @@ export default function Contact() {
               e.currentTarget.style.boxShadow = "0 0 20px rgba(0, 119, 238, 0.4)";
             }}
             onMouseLeave={(e) => {
-              e.currentTarget.style.backgroundColor = "#0077ee";
+              e.currentTarget.style.backgroundColor = "var(--accent)";
               e.currentTarget.style.boxShadow = "none";
             }}
           >
@@ -85,14 +85,14 @@ export default function Contact() {
                 target="_blank"
                 rel="noopener noreferrer"
                 className="font-mono text-xs tracking-widest transition-colors duration-150"
-                style={{ color: "#1a3a5a", textDecoration: "none" }}
-                onMouseEnter={(e) => (e.currentTarget.style.color = "#0099ff")}
-                onMouseLeave={(e) => (e.currentTarget.style.color = "#1a3a5a")}
+                style={{ color: "var(--text-dimmer)", textDecoration: "none" }}
+                onMouseEnter={(e) => (e.currentTarget.style.color = "var(--accent-bright)")}
+                onMouseLeave={(e) => (e.currentTarget.style.color = "var(--text-dimmer)")}
               >
                 {l.label} ↗
               </a>
             ))}
-            <span className="font-mono text-xs tracking-widest" style={{ color: "#1a3a5a" }}>
+            <span className="font-mono text-xs tracking-widest" style={{ color: "var(--text-dimmer)" }}>
               ● {personal.location}
             </span>
           </div>

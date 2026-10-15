@@ -28,9 +28,9 @@ export default function ProjectContent({ id }: { id: string }) {
           <Link
             href="/projects"
             className="font-mono text-xs tracking-widest uppercase transition-colors duration-150"
-            style={{ color: "#1a3a5a", textDecoration: "none" }}
-            onMouseEnter={(e) => (e.currentTarget.style.color = "#0099ff")}
-            onMouseLeave={(e) => (e.currentTarget.style.color = "#1a3a5a")}
+            style={{ color: "var(--text-dimmer)", textDecoration: "none" }}
+            onMouseEnter={(e) => (e.currentTarget.style.color = "var(--accent-bright)")}
+            onMouseLeave={(e) => (e.currentTarget.style.color = "var(--text-dimmer)")}
           >
             ← RETURN TO OPERATIONS
           </Link>
@@ -48,13 +48,13 @@ export default function ProjectContent({ id }: { id: string }) {
           style={{
             fontFamily: "var(--font-rajdhani)",
             fontSize: "clamp(2rem, 6vw, 3.5rem)",
-            color: "#c0d8f4",
+            color: "var(--text-bright)",
             textShadow: `0 0 30px ${c}33`,
           }}
         >
           {project.title}
         </h1>
-        <p className="text-sm mb-3" style={{ color: "#2a4a6a" }}>{project.subtitle}</p>
+        <p className="text-sm mb-3" style={{ color: "var(--text-dim)" }}>{project.subtitle}</p>
 
         <div className="flex flex-wrap items-center gap-2 mb-10">
           <span
@@ -73,13 +73,13 @@ export default function ProjectContent({ id }: { id: string }) {
           )}
         </div>
 
-        <div className="grid grid-cols-2 sm:grid-cols-4 gap-px mb-10" style={{ border: "1px solid #0c2040", backgroundColor: "#0c2040" }}>
+        <div className="grid grid-cols-2 sm:grid-cols-4 gap-px mb-10" style={{ border: "1px solid #0c2040", backgroundColor: "var(--border)" }}>
           {project.metrics.map((m, i) => (
-            <div key={i} className="relative px-5 py-4" style={{ backgroundColor: "#040c18" }}>
+            <div key={i} className="relative px-5 py-4" style={{ backgroundColor: "var(--surface)" }}>
               <p className="font-mono text-2xl font-bold mb-1" style={{ color: c, textShadow: `0 0 12px ${c}44` }}>
                 {m.value}
               </p>
-              <p className="font-mono text-xs" style={{ color: "#2a4a6a" }}>{m.label}</p>
+              <p className="font-mono text-xs" style={{ color: "var(--text-dim)" }}>{m.label}</p>
             </div>
           ))}
         </div>
@@ -89,41 +89,41 @@ export default function ProjectContent({ id }: { id: string }) {
             <div
               key={key}
               className="relative p-6"
-              style={{ backgroundColor: "#040c18", border: `1px solid ${key === "solution" ? c + "33" : "#0c2040"}` }}
+              style={{ backgroundColor: "var(--surface)", border: `1px solid ${key === "solution" ? c + "33" : "var(--border)"}` }}
             >
               <Brackets color={key === "solution" ? c + "44" : "#0077ee22"} />
-              <p className="font-mono text-xs tracking-widest uppercase mb-3" style={{ color: key === "solution" ? c : "#1a3a5a" }}>
+              <p className="font-mono text-xs tracking-widest uppercase mb-3" style={{ color: key === "solution" ? c : "var(--text-dimmer)" }}>
                 {key}
               </p>
-              <p className="text-sm leading-relaxed" style={{ color: "#5888aa" }}>
+              <p className="text-sm leading-relaxed" style={{ color: "var(--text)" }}>
                 {project.caseStudy[key]}
               </p>
             </div>
           ))}
         </div>
 
-        <div className="relative p-6 mb-6" style={{ backgroundColor: "#040c18", border: "1px solid #0c2040" }}>
+        <div className="relative p-6 mb-6" style={{ backgroundColor: "var(--surface)", border: "1px solid #0c2040" }}>
           <Brackets />
-          <p className="font-mono text-xs tracking-widest uppercase mb-4" style={{ color: "#1a3a5a" }}>
+          <p className="font-mono text-xs tracking-widest uppercase mb-4" style={{ color: "var(--text-dimmer)" }}>
             KEY CONTRIBUTIONS
           </p>
           <ul className="space-y-3">
             {project.highlights.map((h, i) => (
               <li key={i} className="flex items-start gap-3">
                 <span className="mt-1.5 w-1 h-1 flex-shrink-0" style={{ backgroundColor: c }} />
-                <span className="text-sm leading-relaxed" style={{ color: "#5888aa" }}>{h}</span>
+                <span className="text-sm leading-relaxed" style={{ color: "var(--text)" }}>{h}</span>
               </li>
             ))}
           </ul>
         </div>
 
         <div className="mb-6">
-          <p className="font-mono text-xs tracking-widest uppercase mb-3" style={{ color: "#1a3a5a" }}>
+          <p className="font-mono text-xs tracking-widest uppercase mb-3" style={{ color: "var(--text-dimmer)" }}>
             EQUIPMENT MANIFEST
           </p>
           <div className="flex flex-wrap gap-2">
             {project.stack.map((t, i) => (
-              <span key={i} className="font-mono text-xs px-3 py-1.5 border" style={{ color: "#5888aa", borderColor: "#0c2040", backgroundColor: "#020610" }}>
+              <span key={i} className="font-mono text-xs px-3 py-1.5 border" style={{ color: "var(--text)", borderColor: "var(--border)", backgroundColor: "var(--bg-deep)" }}>
                 {t}
               </span>
             ))}
@@ -158,7 +158,7 @@ export default function ProjectContent({ id }: { id: string }) {
             </a>
           )}
           {project.paper && (
-            <span className="font-mono text-xs tracking-wider" style={{ color: "#1a3a5a" }}>
+            <span className="font-mono text-xs tracking-wider" style={{ color: "var(--text-dimmer)" }}>
               PAPER: ACM MIDDLEWARE &apos;26 · DOI: 10.1145/3801927.3858633
             </span>
           )}

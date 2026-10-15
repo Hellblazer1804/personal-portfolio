@@ -18,14 +18,14 @@ const pipeline = [
     id: "github",
     label: "GitHub",
     sublabel: "Source Control",
-    color: "#c0d8f4",
+    color: "var(--text-bright)",
     detail: "Main branch — push triggers Amplify CI",
   },
   {
     id: "amplify-ci",
     label: "Amplify CI",
     sublabel: "Build Pipeline",
-    color: "#0099ff",
+    color: "var(--accent-bright)",
     detail: "npm ci → npm run build (Next.js 16 + Turbopack)",
   },
   {
@@ -48,7 +48,7 @@ const infraStack = [
   {
     name: "AWS Amplify",
     badge: "Hosting + CI/CD",
-    badgeColor: "#0099ff",
+    badgeColor: "var(--accent-bright)",
     description:
       "Amplify detects every push to main and triggers a full build. The build spec (amplify.yml) runs npm ci and npm run build, then Amplify deploys the Next.js output behind CloudFront automatically. No manual deploy steps.",
     details: [
@@ -124,7 +124,7 @@ export default function Platform() {
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <div className="flex items-center gap-3 mb-3">
-          <span className="font-mono text-xs tracking-widest uppercase" style={{ color: "#0077ee" }}>
+          <span className="font-mono text-xs tracking-widest uppercase" style={{ color: "var(--accent)" }}>
             SYSTEM ARCHITECTURE
           </span>
           <span className="flex-1 h-px" style={{ background: "linear-gradient(90deg, #0077ee33, transparent)" }} />
@@ -135,20 +135,20 @@ export default function Platform() {
           style={{
             fontFamily: "var(--font-rajdhani)",
             fontSize: "clamp(1.8rem, 4vw, 2.8rem)",
-            color: "#c0d8f4",
+            color: "var(--text-bright)",
             textShadow: "0 0 20px rgba(0,119,238,0.2)",
           }}
         >
           How This Was Built
         </h2>
-        <p className="font-mono text-sm mb-12 max-w-2xl" style={{ color: "#2a4a6a" }}>
+        <p className="font-mono text-sm mb-12 max-w-2xl" style={{ color: "var(--text-dim)" }}>
           The portfolio itself is a working demonstration of platform engineering — IaC-provisioned CDN,
           CI/CD-automated deployments, and a Next.js SSR app wired together with Terraform and AWS Amplify.
         </p>
 
         {/* Deployment pipeline */}
         <div className="mb-14">
-          <p className="font-mono text-xs tracking-widest uppercase mb-5" style={{ color: "#1a3a5a" }}>
+          <p className="font-mono text-xs tracking-widest uppercase mb-5" style={{ color: "var(--text-dimmer)" }}>
             DEPLOYMENT PIPELINE
           </p>
           <div className="flex flex-col sm:flex-row items-stretch gap-0">
@@ -157,7 +157,7 @@ export default function Platform() {
                 {/* Node */}
                 <div
                   className="relative flex-1 sm:flex-none p-4 w-full"
-                  style={{ backgroundColor: "#040c18", border: `1px solid ${step.color}33` }}
+                  style={{ backgroundColor: "var(--surface)", border: `1px solid ${step.color}33` }}
                 >
                   <Brackets color={step.color + "44"} />
                   <p
@@ -166,10 +166,10 @@ export default function Platform() {
                   >
                     {step.label}
                   </p>
-                  <p className="font-mono text-xs mt-0.5 mb-2" style={{ color: "#1a3a5a" }}>
+                  <p className="font-mono text-xs mt-0.5 mb-2" style={{ color: "var(--text-dimmer)" }}>
                     {step.sublabel}
                   </p>
-                  <p className="font-mono text-xs leading-relaxed" style={{ color: "#2a4a6a" }}>
+                  <p className="font-mono text-xs leading-relaxed" style={{ color: "var(--text-dim)" }}>
                     {step.detail}
                   </p>
                 </div>
@@ -177,7 +177,7 @@ export default function Platform() {
                 {i < pipeline.length - 1 && (
                   <div
                     className="flex-shrink-0 flex items-center justify-center sm:rotate-0 rotate-90 w-8 sm:w-auto sm:h-8"
-                    style={{ color: "#1a3a5a" }}
+                    style={{ color: "var(--text-dimmer)" }}
                   >
                     <span className="font-mono text-xs">→</span>
                   </div>
@@ -189,35 +189,35 @@ export default function Platform() {
 
         {/* Photo CDN pipeline */}
         <div className="mb-14">
-          <p className="font-mono text-xs tracking-widest uppercase mb-5" style={{ color: "#1a3a5a" }}>
+          <p className="font-mono text-xs tracking-widest uppercase mb-5" style={{ color: "var(--text-dimmer)" }}>
             PHOTO CDN PIPELINE (TERRAFORM)
           </p>
           <div
             className="relative p-5"
-            style={{ backgroundColor: "#040c18", border: "1px solid #a78bfa33" }}
+            style={{ backgroundColor: "var(--surface)", border: "1px solid #a78bfa33" }}
           >
             <Brackets color="#a78bfa44" />
             <div className="flex flex-wrap items-center gap-3 font-mono text-xs">
               {[
                 { label: "S3 Bucket", sub: "private", color: "#00aa44" },
-                { label: "→", sub: "", color: "#1a3a5a" },
-                { label: "OAC", sub: "sigv4 signing", color: "#0099ff" },
-                { label: "→", sub: "", color: "#1a3a5a" },
+                { label: "→", sub: "", color: "var(--text-dimmer)" },
+                { label: "OAC", sub: "sigv4 signing", color: "var(--accent-bright)" },
+                { label: "→", sub: "", color: "var(--text-dimmer)" },
                 { label: "CloudFront", sub: "PriceClass_100", color: "#f59e0b" },
-                { label: "→", sub: "", color: "#1a3a5a" },
-                { label: "Browser", sub: "immutable cache", color: "#c0d8f4" },
+                { label: "→", sub: "", color: "var(--text-dimmer)" },
+                { label: "Browser", sub: "immutable cache", color: "var(--text-bright)" },
               ].map((node, i) => (
                 node.label === "→" ? (
                   <span key={i} style={{ color: node.color }}>→</span>
                 ) : (
-                  <div key={i} className="px-3 py-2" style={{ border: `1px solid ${node.color}33`, backgroundColor: "#020610" }}>
+                  <div key={i} className="px-3 py-2" style={{ border: `1px solid ${node.color}33`, backgroundColor: "var(--bg-deep)" }}>
                     <p style={{ color: node.color }}>{node.label}</p>
-                    {node.sub && <p style={{ color: "#1a3a5a" }}>{node.sub}</p>}
+                    {node.sub && <p style={{ color: "var(--text-dimmer)" }}>{node.sub}</p>}
                   </div>
                 )
               ))}
             </div>
-            <p className="font-mono text-xs mt-3" style={{ color: "#1a3a5a" }}>
+            <p className="font-mono text-xs mt-3" style={{ color: "var(--text-dimmer)" }}>
               Bucket policy scoped to CloudFront ARN via AWS:SourceArn — S3 is never publicly accessible
             </p>
           </div>
@@ -225,7 +225,7 @@ export default function Platform() {
 
         {/* Infrastructure breakdown */}
         <div className="mb-14">
-          <p className="font-mono text-xs tracking-widest uppercase mb-5" style={{ color: "#1a3a5a" }}>
+          <p className="font-mono text-xs tracking-widest uppercase mb-5" style={{ color: "var(--text-dimmer)" }}>
             INFRASTRUCTURE BREAKDOWN
           </p>
           <div className="space-y-3">
@@ -233,13 +233,13 @@ export default function Platform() {
               <div
                 key={item.name}
                 className="relative p-6"
-                style={{ backgroundColor: "#040c18", border: `1px solid ${item.badgeColor}22` }}
+                style={{ backgroundColor: "var(--surface)", border: `1px solid ${item.badgeColor}22` }}
               >
                 <Brackets color={item.badgeColor + "33"} />
                 <div className="flex flex-wrap items-center gap-3 mb-3">
                   <h3
                     className="font-bold uppercase tracking-wide"
-                    style={{ fontFamily: "var(--font-rajdhani)", fontSize: "1.1rem", color: "#c0d8f4" }}
+                    style={{ fontFamily: "var(--font-rajdhani)", fontSize: "1.1rem", color: "var(--text-bright)" }}
                   >
                     {item.name}
                   </h3>
@@ -250,14 +250,14 @@ export default function Platform() {
                     {item.badge}
                   </span>
                 </div>
-                <p className="text-sm leading-relaxed mb-4" style={{ color: "#5888aa" }}>
+                <p className="text-sm leading-relaxed mb-4" style={{ color: "var(--text)" }}>
                   {item.description}
                 </p>
                 <ul className="flex flex-wrap gap-x-6 gap-y-1">
                   {item.details.map((d, i) => (
                     <li key={i} className="flex items-start gap-2">
                       <span className="mt-1.5 w-1 h-1 flex-shrink-0" style={{ backgroundColor: item.badgeColor }} />
-                      <span className="font-mono text-xs" style={{ color: "#2a4a6a" }}>{d}</span>
+                      <span className="font-mono text-xs" style={{ color: "var(--text-dim)" }}>{d}</span>
                     </li>
                   ))}
                 </ul>
@@ -268,7 +268,7 @@ export default function Platform() {
 
         {/* Full tech stack */}
         <div>
-          <p className="font-mono text-xs tracking-widest uppercase mb-4" style={{ color: "#1a3a5a" }}>
+          <p className="font-mono text-xs tracking-widest uppercase mb-4" style={{ color: "var(--text-dimmer)" }}>
             FULL STACK
           </p>
           <div className="flex flex-wrap gap-2">
@@ -276,10 +276,10 @@ export default function Platform() {
               <div
                 key={t.name}
                 className="px-3 py-2"
-                style={{ backgroundColor: "#040c18", border: "1px solid #0c2040" }}
+                style={{ backgroundColor: "var(--surface)", border: "1px solid #0c2040" }}
               >
-                <p className="font-mono text-xs" style={{ color: "#c0d8f4" }}>{t.name}</p>
-                <p className="font-mono text-xs" style={{ color: "#1a3a5a" }}>{t.category}</p>
+                <p className="font-mono text-xs" style={{ color: "var(--text-bright)" }}>{t.name}</p>
+                <p className="font-mono text-xs" style={{ color: "var(--text-dimmer)" }}>{t.category}</p>
               </div>
             ))}
           </div>

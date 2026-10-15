@@ -3,6 +3,7 @@ import { Geist, Geist_Mono, Rajdhani } from "next/font/google";
 import { Suspense } from "react";
 import Navigation from "@/components/Navigation";
 import Footer from "@/components/Footer";
+import { ThemeProvider } from "@/components/ThemeProvider";
 import "./globals.css";
 
 const geistSans = Geist({
@@ -53,11 +54,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       className={`${geistSans.variable} ${geistMono.variable} ${rajdhani.variable}`}
     >
       <body>
-        <Suspense fallback={<div style={{ height: "56px" }} />}>
-          <Navigation />
-        </Suspense>
-        <main>{children}</main>
-        <Footer />
+        <ThemeProvider>
+          <Suspense fallback={<div style={{ height: "56px" }} />}>
+            <Navigation />
+          </Suspense>
+          <main>{children}</main>
+          <Footer />
+        </ThemeProvider>
       </body>
     </html>
   );

@@ -55,7 +55,7 @@ function SubjectPhoto() {
         style={{
           aspectRatio: "3/4",
           border: "1px solid #0c2040",
-          backgroundColor: "#020610",
+          backgroundColor: "var(--bg-deep)",
         }}
       >
         <Brackets color="#0077ee66" />
@@ -127,10 +127,10 @@ function SubjectPhoto() {
             transition: "opacity 0.5s ease 0.2s",
           }}
         >
-          <p className="font-mono text-xs tracking-widest" style={{ color: "#0099ff" }}>
+          <p className="font-mono text-xs tracking-widest" style={{ color: "var(--accent-bright)" }}>
             ● SUBJECT IDENTIFIED
           </p>
-          <p className="font-mono text-xs mt-0.5" style={{ color: "#2a4a6a" }}>
+          <p className="font-mono text-xs mt-0.5" style={{ color: "var(--text-dim)" }}>
             {personal.location}
           </p>
         </div>
@@ -139,13 +139,13 @@ function SubjectPhoto() {
       {/* Corner coordinate labels */}
       <span
         className="absolute -top-5 left-0 font-mono text-xs"
-        style={{ color: "#1a3a5a" }}
+        style={{ color: "var(--text-dimmer)" }}
       >
         00°N 00°W
       </span>
       <span
         className="absolute -bottom-5 right-0 font-mono text-xs"
-        style={{ color: "#1a3a5a" }}
+        style={{ color: "var(--text-dimmer)" }}
       >
         ID-001
       </span>
@@ -157,7 +157,7 @@ export default function Hero() {
   return (
     <section
       className="relative min-h-screen flex flex-col justify-center pt-20 pb-16 px-6 overflow-hidden"
-      style={{ background: "linear-gradient(160deg, #010208 0%, #020818 60%, #010208 100%)" }}
+      style={{ background: "linear-gradient(160deg, var(--bg) 0%, var(--surface) 60%, var(--bg) 100%)" }}
     >
       {/* Radial glow */}
       <div
@@ -168,11 +168,11 @@ export default function Hero() {
       <div className="relative max-w-6xl mx-auto w-full">
         {/* System label */}
         <div className="flex items-center gap-3 mb-10">
-          <span className="w-6 h-px" style={{ backgroundColor: "#0077ee" }} />
-          <span className="font-mono text-xs tracking-widest uppercase" style={{ color: "#0077ee" }}>
+          <span className="w-6 h-px" style={{ backgroundColor: "var(--accent)" }} />
+          <span className="font-mono text-xs tracking-widest uppercase" style={{ color: "var(--accent)" }}>
             SUBJECT IDENTIFICATION // SEQUENCE INITIALIZED
           </span>
-          <span className="w-6 h-px" style={{ backgroundColor: "#0077ee" }} />
+          <span className="w-6 h-px" style={{ backgroundColor: "var(--accent)" }} />
         </div>
 
         {/* Two-column layout */}
@@ -184,18 +184,18 @@ export default function Hero() {
               style={{
                 fontFamily: "var(--font-rajdhani)",
                 fontSize: "clamp(3.5rem, 10vw, 7.5rem)",
-                color: "#c0d8f4",
+                color: "var(--text-bright)",
                 textShadow: "0 0 40px rgba(0, 119, 238, 0.25)",
               }}
             >
               {personal.name.split(" ")[0]}
               <br />
-              <span style={{ color: "#0099ff" }}>{personal.name.split(" ")[1]}</span>
+              <span style={{ color: "var(--accent-bright)" }}>{personal.name.split(" ")[1]}</span>
             </h1>
 
             {/* Type animation */}
             <div className="mb-6 h-8 flex items-center gap-2">
-              <span className="font-mono text-sm" style={{ color: "#0077ee" }}>&gt;&gt;</span>
+              <span className="font-mono text-sm" style={{ color: "var(--accent)" }}>&gt;&gt;</span>
               <TypeAnimation
                 sequence={[
                   "Platform Engineer",
@@ -216,14 +216,14 @@ export default function Hero() {
                 deletionSpeed={75}
                 repeat={Infinity}
                 className="font-mono text-base tracking-wider"
-                style={{ color: "#5888aa" }}
+                style={{ color: "var(--text)" }}
               />
             </div>
 
             {/* Tagline */}
             <p
               className="text-base sm:text-lg max-w-xl leading-relaxed mb-10"
-              style={{ color: "#2a4a6a" }}
+              style={{ color: "var(--text-dim)" }}
             >
               {personal.tagline}
             </p>
@@ -234,14 +234,14 @@ export default function Hero() {
                 href="/projects"
                 className="inline-flex items-center gap-2 px-5 py-2.5 font-mono text-xs tracking-widest uppercase transition-all duration-200"
                 style={{
-                  backgroundColor: "#0077ee",
-                  color: "#010208",
+                  backgroundColor: "var(--accent)",
+                  color: "var(--bg)",
                   fontWeight: 600,
                   border: "1px solid #0099ff",
                   textDecoration: "none",
                 }}
                 onMouseEnter={(e) => (e.currentTarget.style.backgroundColor = "#0055cc")}
-                onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "#0077ee")}
+                onMouseLeave={(e) => (e.currentTarget.style.backgroundColor = "var(--accent)")}
               >
                 ACCESS FILES
               </Link>
@@ -250,12 +250,12 @@ export default function Hero() {
                 className="inline-flex items-center gap-2 px-5 py-2.5 font-mono text-xs tracking-widest uppercase transition-all duration-200"
                 style={{
                   backgroundColor: "transparent",
-                  color: "#0099ff",
+                  color: "var(--accent-bright)",
                   border: "1px solid #0077ee44",
                   textDecoration: "none",
                 }}
                 onMouseEnter={(e) => {
-                  e.currentTarget.style.borderColor = "#0077ee";
+                  e.currentTarget.style.borderColor = "var(--accent)";
                   e.currentTarget.style.boxShadow = "0 0 12px rgba(0,119,238,0.2)";
                 }}
                 onMouseLeave={(e) => {
@@ -272,12 +272,12 @@ export default function Hero() {
                 className="inline-flex items-center gap-2 px-5 py-2.5 font-mono text-xs tracking-widest uppercase transition-all duration-200"
                 style={{
                   backgroundColor: "transparent",
-                  color: "#2a4a6a",
+                  color: "var(--text-dim)",
                   border: "1px solid #0c2040",
                   textDecoration: "none",
                 }}
-                onMouseEnter={(e) => { e.currentTarget.style.color = "#5888aa"; e.currentTarget.style.borderColor = "#1a4060"; }}
-                onMouseLeave={(e) => { e.currentTarget.style.color = "#2a4a6a"; e.currentTarget.style.borderColor = "#0c2040"; }}
+                onMouseEnter={(e) => { e.currentTarget.style.color = "var(--text)"; e.currentTarget.style.borderColor = "#1a4060"; }}
+                onMouseLeave={(e) => { e.currentTarget.style.color = "var(--text-dim)"; e.currentTarget.style.borderColor = "var(--border)"; }}
               >
                 GITHUB ↗
               </a>
@@ -291,15 +291,15 @@ export default function Hero() {
                   <div
                     key={i}
                     className="px-5 py-4 border-r border-b sm:border-b-0 last:border-r-0"
-                    style={{ borderColor: "#0c2040", backgroundColor: "#040c18" }}
+                    style={{ borderColor: "var(--border)", backgroundColor: "var(--surface)" }}
                   >
                     <p
                       className="font-mono text-xl font-bold mb-1"
-                      style={{ color: "#0099ff", textShadow: "0 0 12px rgba(0,153,255,0.4)" }}
+                      style={{ color: "var(--accent-bright)", textShadow: "0 0 12px rgba(0,153,255,0.4)" }}
                     >
                       {stat.value}
                     </p>
-                    <p className="font-mono text-xs tracking-wider" style={{ color: "#2a4a6a" }}>
+                    <p className="font-mono text-xs tracking-wider" style={{ color: "var(--text-dim)" }}>
                       {stat.label}
                     </p>
                   </div>
@@ -321,7 +321,7 @@ export default function Hero() {
           className="w-px h-10 animate-pulse"
           style={{ background: "linear-gradient(to bottom, #0077ee44, transparent)" }}
         />
-        <span className="font-mono text-xs tracking-widest" style={{ color: "#1a3a5a" }}>
+        <span className="font-mono text-xs tracking-widest" style={{ color: "var(--text-dimmer)" }}>
           SCROLL
         </span>
       </div>
