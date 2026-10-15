@@ -127,7 +127,7 @@ export const projects = [
       challenge:
         "Surface root-cause hypotheses faster across a fragmented observability stack without replacing human judgment for remediation decisions or introducing an autonomous system that could take unreviewed actions in production.",
       solution:
-        "Built as a Claude Code skill: an orchestrator dispatches sub-agents concurrently, each owning one observability domain through an MCP server layer (Prometheus, BigQuery, gcloud APIs). Agents correlate signals and surface ranked hypotheses; every proposed remediation requires explicit human approval before execution.",
+        "Built as a Claude Code skill that runs on a schedule on my work machine during on-call weeks. It pulls my on-call schedule from Jira, sets a cron, and scans every 30 minutes for incident tickets assigned to me. The moment it detects one, an orchestrator dispatches sub-agents concurrently against Prometheus, BigQuery, and gcloud APIs through MCP servers - correlating signals and surfacing ranked root-cause hypotheses. Every proposed remediation requires explicit human approval before execution.",
     },
     metrics: [
       { value: "40%", label: "MTTD reduction" },
@@ -136,12 +136,12 @@ export const projects = [
       { value: "Human", label: "Approval gate before all actions" },
     ],
     highlights: [
-      "Orchestrator dispatches sub-agents concurrently, each responsible for a single observability domain (metrics, logs, cloud APIs)",
-      "Human-in-the-loop approval gate prevents autonomous remediation - agents propose, humans decide",
-      "MCP server layer provides structured tool interfaces for Prometheus queries, BigQuery analytics, and gcloud operations",
-      "Deployed on GKE as part of the Argo Workflows migration from PowerShell-based task automation",
+      "Pulls on-call schedule from Jira, sets a cron, and scans every 30 minutes for incident tickets assigned to me - kicks off automatically the moment one is detected",
+      "Orchestrator dispatches sub-agents concurrently, each owning one observability domain (Prometheus, BigQuery, gcloud APIs) through MCP servers",
+      "Human-in-the-loop approval gate prevents autonomous remediation - agents surface ranked hypotheses, humans decide on action",
+      "Runs locally on a schedule during on-call weeks - no infrastructure to manage, zero deployment overhead",
     ],
-    stack: ["Python", "Claude Code", "MCP", "Prometheus", "BigQuery", "GKE", "Argo Workflows"],
+    stack: ["Python", "Claude Code", "MCP", "Prometheus", "BigQuery", "Jira API", "cron"],
     github: null,
     paper: false,
   },
@@ -283,12 +283,12 @@ export const experience = [
       challenge:
         "Modernize the platform to Python and Argo Workflows on GKE while simultaneously shipping a production AI observability system and maintaining DR coverage for the live platform - including real incidents.",
       solution:
-        "Developed new features and unit tests for the PowerShell-based task platform (−30% failure rate), built the multi-agent AI ops system with Claude Code and MCP servers (MTTD −40%, MTTR −30%), and delivered Terraform-driven GKE provisioning that cut deployment time 80%+. During a GCE AZ power outage, detected the failure, pulled the affected VM list, and ran our automated failover script to restore customer VMs - recovered in ~1 hour.",
+        "Developed new features and unit tests for the PowerShell-based task platform (−30% failure rate), built a multi-agent AI on-call assistant that pulls Jira schedules and scans every 30 min for incident tickets (MTTD −40%, MTTR −30%), and wrote Terraform modules for Argo platform provisioning on GKE that cut deployment time 80%+. During a GCE AZ power outage, detected the failure, pulled the affected VM list, and ran our automated failover script - recovered in ~1 hour.",
     },
     highlights: [
       "Developed new features and unit tests for the PowerShell-based automated task platform, improving reliability and reducing task failure rates by 30%",
-      "Built a production multi-agent AI system as a Claude Code skill - orchestrator runs agents concurrently against Prometheus, BigQuery, and gcloud APIs through MCP servers; cut MTTD 40%, MTTR 30%",
-      "Leading the migration of VM workloads to Kubernetes-native Argo Workflows on GKE across a multi-region architecture; Terraform modules in CI/CD cut provisioning time by 80%+",
+      "Built a multi-agent AI on-call assistant as a Claude Code skill - pulls Jira schedule, sets a cron, scans every 30 min for incident tickets, and immediately dispatches sub-agents across Prometheus, BigQuery, and gcloud APIs via MCP; cut MTTD 40%, MTTR 30%",
+      "Leading the migration of VM workloads to Kubernetes-native Argo Workflows on GKE across a multi-region architecture; wrote and maintained Terraform modules for Argo platform provisioning, cutting deployment time by 80%+",
       "Handling DR on-call for the Argo and automated task platforms (GKE node failovers, VM backups, OSR image updates); executed region failovers during a data center power outage, recovering in ~1 hour",
     ],
     stack: ["Python", "GKE", "Argo Workflows", "Terraform", "Prometheus", "BigQuery", "MCP"],
