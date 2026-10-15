@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { photos, type Photo } from "@/lib/data";
 import { photoUrl } from "@/lib/photo-url";
 
@@ -15,7 +15,78 @@ function Brackets({ color = "#0077ee44" }: { color?: string }) {
   );
 }
 
-function PhotoCard({ photo }: { photo: Photo }) {
+function Lightbox({ photo, onClose }: { photo: Photo; onClose: () => void }) {
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => { if (e.key === "Escape") onClose(); };
+    window.addEventListener("keydown", handler);
+    return () => window.removeEventListener("keydown", handler);
+  }, [onClose]);
+
+  return (
+    <div
+      className="fixed inset-0 flex flex-col items-center justify-center z-[9999] px-4 py-8"
+      style={{ backgroundColor: "rgba(1,2,8,0.96)" }}
+      onClick={onClose}
+    >
+      {/* Scan lines */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: "repeating-linear-gradient(0deg, transparent, transparent 3px, rgba(0,30,100,0.022) 3px, rgba(0,30,100,0.022) 4px)",
+        }}
+      />
+
+      {/* Photo container */}
+      <div
+        className="relative"
+        style={{ maxWidth: "min(90vw, 1200px)", maxHeight: "80vh" }}
+        onClick={(e) => e.stopPropagation()}
+      >
+        {/* Corner brackets */}
+        <span className="absolute -top-1 -left-1 w-5 h-5 border-t-2 border-l-2 z-10" style={{ borderColor: "#0077ee" }} />
+        <span className="absolute -top-1 -right-1 w-5 h-5 border-t-2 border-r-2 z-10" style={{ borderColor: "#0077ee" }} />
+        <span className="absolute -bottom-1 -left-1 w-5 h-5 border-b-2 border-l-2 z-10" style={{ borderColor: "#0077ee" }} />
+        <span className="absolute -bottom-1 -right-1 w-5 h-5 border-b-2 border-r-2 z-10" style={{ borderColor: "#0077ee" }} />
+
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={photoUrl(photo.src)}
+          alt={photo.title}
+          style={{
+            display: "block",
+            maxWidth: "100%",
+            maxHeight: "80vh",
+            objectFit: "contain",
+            boxShadow: "0 0 60px rgba(0,119,238,0.15)",
+          }}
+        />
+      </div>
+
+      {/* Caption */}
+      <div className="relative mt-5 text-center" onClick={(e) => e.stopPropagation()}>
+        <p
+          className="font-bold uppercase tracking-wide mb-1"
+          style={{ fontFamily: "var(--font-rajdhani)", fontSize: "1.1rem", color: "#c0d8f4" }}
+        >
+          {photo.title}
+        </p>
+        <p className="font-mono text-xs" style={{ color: "#2a4a6a" }}>
+          ● {photo.location} · {photo.date}
+        </p>
+      </div>
+
+      {/* Close hint */}
+      <p
+        className="absolute bottom-5 font-mono text-xs tracking-widest"
+        style={{ color: "#1a3a5a" }}
+      >
+        CLICK OUTSIDE OR ESC TO CLOSE
+      </p>
+    </div>
+  );
+}
+
+function PhotoCard({ photo, onLightbox }: { photo: Photo; onLightbox: (p: Photo) => void }) {
   const [flipped, setFlipped] = useState(false);
 
   return (
@@ -23,6 +94,7 @@ function PhotoCard({ photo }: { photo: Photo }) {
       className="relative cursor-pointer"
       style={{ perspective: "1200px", height: "420px" }}
       onClick={() => setFlipped((f) => !f)}
+      onDoubleClick={(e) => { e.preventDefault(); onLightbox(photo); }}
     >
       <div
         style={{
@@ -178,13 +250,24 @@ function PhotoCard({ photo }: { photo: Photo }) {
                   </span>
                 ))}
               </div>
-              <button
-                onClick={(e) => { e.stopPropagation(); setFlipped(false); }}
-                className="font-mono text-xs tracking-widest transition-colors duration-150"
-                style={{ color: "#0099ff", background: "none", border: "none", cursor: "pointer", padding: 0 }}
-              >
-                ↩ CLOSE
-              </button>
+              <div className="flex items-center gap-4">
+                <button
+                  onClick={(e) => { e.stopPropagation(); onLightbox(photo); }}
+                  className="font-mono text-xs tracking-widest transition-opacity duration-150"
+                  style={{ color: "#0099ff", background: "none", border: "none", cursor: "pointer", padding: 0 }}
+                  onMouseEnter={(e) => (e.currentTarget.style.opacity = "0.7")}
+                  onMouseLeave={(e) => (e.currentTarget.style.opacity = "1")}
+                >
+                  ⤢ FULL VIEW
+                </button>
+                <button
+                  onClick={(e) => { e.stopPropagation(); setFlipped(false); }}
+                  className="font-mono text-xs tracking-widest transition-colors duration-150"
+                  style={{ color: "#2a4a6a", background: "none", border: "none", cursor: "pointer", padding: 0 }}
+                >
+                  ↩ CLOSE
+                </button>
+              </div>
             </div>
           </div>
         </div>
@@ -194,6 +277,9 @@ function PhotoCard({ photo }: { photo: Photo }) {
 }
 
 export default function Photography() {
+  const [lightboxPhoto, setLightboxPhoto] = useState<Photo | null>(null);
+  const closeLightbox = useCallback(() => setLightboxPhoto(null), []);
+
   return (
     <section className="py-24 px-6">
       <div className="max-w-6xl mx-auto">
@@ -218,8 +304,10 @@ export default function Photography() {
           Photography
         </h2>
         <p className="font-mono text-sm mb-10" style={{ color: "#2a4a6a" }}>
-          Click any record to flip and read the story behind it.
+          Click to flip and read the story. Double-click for a full-screen view.
         </p>
+
+        {lightboxPhoto && <Lightbox photo={lightboxPhoto} onClose={closeLightbox} />}
 
         {photos.length === 0 ? (
           /* Empty state */
@@ -242,7 +330,7 @@ export default function Photography() {
         ) : (
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {photos.map((photo) => (
-              <PhotoCard key={photo.id} photo={photo} />
+              <PhotoCard key={photo.id} photo={photo} onLightbox={setLightboxPhoto} />
             ))}
           </div>
         )}
