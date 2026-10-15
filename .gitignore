@@ -40,8 +40,9 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
-# Amplify backend dependencies
+# Amplify backend dependencies and artifacts
 amplify/node_modules/
+.amplify/
 
 # RAW photo originals — keep locally, serve only converted JPEGs
 public/photos/*.DNG
