@@ -308,8 +308,8 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* Right - photo */}
-          <div className="lg:w-[280px] w-full flex justify-center lg:justify-end lg:pt-2 flex-shrink-0">
+          {/* Right - photo (top on mobile, right column on desktop) */}
+          <div className="lg:w-[280px] w-full flex justify-center lg:justify-end lg:pt-2 flex-shrink-0 order-first lg:order-last">
             <SubjectPhoto />
           </div>
         </div>
