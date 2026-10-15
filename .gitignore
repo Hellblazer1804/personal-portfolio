@@ -40,6 +40,9 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 
+# Amplify backend dependencies
+amplify/node_modules/
+
 # RAW photo originals — keep locally, serve only converted JPEGs
 public/photos/*.DNG
 public/photos/*.dng
@@ -49,3 +52,7 @@ public/photos/*.ARW
 public/photos/*.arw
 public/photos/*.NEF
 public/photos/*.nef
+terraform/.terraform/
+terraform/.terraform.lock.hcl
+terraform/terraform.tfstate
+terraform/terraform.tfstate.backup

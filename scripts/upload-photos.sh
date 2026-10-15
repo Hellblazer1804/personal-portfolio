@@ -1,35 +1,28 @@
 #!/bin/bash
-# Upload portfolio photos to Amplify S3 bucket for CDN delivery.
+# Upload portfolio photos to S3 and invalidate CloudFront cache.
 #
 # Usage:
-#   ./scripts/upload-photos.sh <bucket-name>
+#   ./scripts/upload-photos.sh <bucket-name> [cloudfront-distribution-id]
 #
-# The bucket name is shown in the Amplify console under
-# Storage > portfolioAssets > Bucket name.
-# It looks like: portfolioassets-[hash]-[env]
-#
-# After uploading, set NEXT_PUBLIC_PHOTO_CDN_URL in the Amplify console:
-#   App settings > Environment variables
-#   Key:   NEXT_PUBLIC_PHOTO_CDN_URL
-#   Value: https://[your-cloudfront-id].cloudfront.net
-#
-# The CloudFront domain is shown in Amplify console > Storage > CDN domain.
+# Get both values from Terraform outputs:
+#   cd terraform && terraform output
 
 set -e
 
 BUCKET="${1:-}"
+CF_DIST="${2:-}"
+
 if [ -z "$BUCKET" ]; then
-  echo "Usage: ./scripts/upload-photos.sh <bucket-name>"
+  echo "Usage: ./scripts/upload-photos.sh <bucket-name> [cloudfront-distribution-id]"
   echo ""
-  echo "Find your bucket name in: Amplify console > Storage > portfolioAssets"
+  echo "Get values from: cd terraform && terraform output"
   exit 1
 fi
 
 REGION="${AWS_REGION:-us-east-1}"
 
-echo "Uploading photos to s3://${BUCKET}/photos/ ..."
+echo "Uploading to s3://${BUCKET}/photos/ ..."
 
-# Portfolio photos
 aws s3 sync public/photos/ "s3://${BUCKET}/photos/" \
   --region "$REGION" \
   --cache-control "public,max-age=31536000,immutable" \
@@ -40,11 +33,19 @@ aws s3 sync public/photos/ "s3://${BUCKET}/photos/" \
   --include "*.jpg" \
   --include "*.jpeg"
 
-# Personal photo (hero)
-aws s3 cp public/personal-photo.jpg "s3://${BUCKET}/photos/personal-photo.jpg" \
-  --region "$REGION" \
-  --cache-control "public,max-age=31536000,immutable"
+echo "Upload complete."
+
+# Invalidate CloudFront cache if distribution ID provided
+if [ -n "$CF_DIST" ]; then
+  echo "Invalidating CloudFront cache ..."
+  aws cloudfront create-invalidation \
+    --distribution-id "$CF_DIST" \
+    --paths "/photos/*" \
+    --region us-east-1
+  echo "Cache invalidation submitted."
+fi
 
 echo ""
-echo "Done. Photos are at: https://[cloudfront-id].cloudfront.net/photos/"
-echo "Set NEXT_PUBLIC_PHOTO_CDN_URL in Amplify env vars to activate CDN delivery."
+echo "Done. Set NEXT_PUBLIC_PHOTO_CDN_URL in Amplify env vars:"
+echo "  https://[cloudfront-domain].cloudfront.net"
+echo "(from: cd terraform && terraform output cdn_url)"
