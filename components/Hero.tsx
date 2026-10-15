@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import Link from "next/link";
 import { TypeAnimation } from "react-type-animation";
 import { personal, heroStats } from "@/lib/data";
+import { photoUrl } from "@/lib/photo-url";
 
 function Brackets({ color = "#0077ee55" }: { color?: string }) {
   return (
@@ -61,7 +62,7 @@ function SubjectPhoto() {
 
         {/* Photo - reveals in grayscale during scan, pops to color on done */}
         <img
-          src="/personal-photo.jpg"
+          src={photoUrl("/photos/personal-photo.jpg")}
           alt={personal.name}
           style={{
             position: "absolute",

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { photos, type Photo } from "@/lib/data";
+import { photoUrl } from "@/lib/photo-url";
 
 function Brackets({ color = "#0077ee44" }: { color?: string }) {
   return (
@@ -41,7 +42,7 @@ function PhotoCard({ photo }: { photo: Photo }) {
           {/* Photo */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src={photo.src}
+            src={photoUrl(photo.src)}
             alt={photo.title}
             style={{ width: "100%", height: "100%", objectFit: "cover", objectPosition: "center" }}
           />
@@ -116,7 +117,7 @@ function PhotoCard({ photo }: { photo: Photo }) {
           {/* Blurred photo as background */}
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
-            src={photo.src}
+            src={photoUrl(photo.src)}
             alt=""
             aria-hidden
             style={{
