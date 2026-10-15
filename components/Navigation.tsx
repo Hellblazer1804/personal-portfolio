@@ -113,6 +113,7 @@ export default function Navigation() {
             onMouseEnter={(e) => (e.currentTarget.style.borderColor = "var(--accent)")}
             onMouseLeave={(e) => (e.currentTarget.style.borderColor = "var(--border)")}
             title={isDark ? "Switch to light mode" : "Switch to dark mode"}
+            suppressHydrationWarning
           >
             {isDark ? "◑ LIGHT" : "◐ DARK"}
           </button>
@@ -159,6 +160,7 @@ export default function Navigation() {
             onClick={() => { toggle(); setMenuOpen(false); }}
             className="font-mono text-xs tracking-widest py-2 text-left transition-colors duration-150"
             style={{ color: "var(--accent)", background: "none", border: "none", cursor: "pointer", padding: "8px 0" }}
+            suppressHydrationWarning
           >
             {isDark ? "◑ SWITCH TO LIGHT MODE" : "◐ SWITCH TO DARK MODE"}
           </button>
