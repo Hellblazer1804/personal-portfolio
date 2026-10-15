@@ -137,12 +137,17 @@ function SubjectPhoto() {
       </div>
 
       {/* Corner coordinate labels */}
-      <span
-        className="absolute -top-5 left-0 font-mono text-xs"
-        style={{ color: "var(--text-dimmer)" }}
+      <a
+        href="https://maps.google.com/?q=Atlanta,GA"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="absolute -top-5 left-0 font-mono text-xs transition-colors duration-150"
+        style={{ color: "var(--text-dimmer)", textDecoration: "none" }}
+        onMouseEnter={(e) => (e.currentTarget.style.color = "var(--accent-bright)")}
+        onMouseLeave={(e) => (e.currentTarget.style.color = "var(--text-dimmer)")}
       >
         33.75°N 84.39°W
-      </span>
+      </a>
       <span
         className="absolute -bottom-5 right-0 font-mono text-xs"
         style={{ color: "var(--text-dimmer)" }}
